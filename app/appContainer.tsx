@@ -7,22 +7,6 @@ import HomeScreen from '../screens/homeScreen'
 import SelectScreen from '../screens/selectScreen'
 import DetailScreen from '../screens/detailScreen'
 
-// export const AppNavigator = createStackNavigator({
-//     Home: {
-//         screen: HomeScreen,
-//     },
-//     Select: {
-//         screen: SelectScreen
-//     },
-//     Detail: {
-//         screen: DetailScreen
-//     }
-// },
-// {
-    // initialRouteName:'Home'
-// }
-// )
-
 const Tabs = createBottomTabNavigator({
     'Select':{
         screen: SelectScreen,
@@ -47,6 +31,6 @@ const Tabs = createBottomTabNavigator({
     }
 })
 const StackContainer = createStackNavigator({Tabs},{headerMode:"none"})
-const AppContainer = createAppContainer(Tabs)
+const AppContainer = createAppContainer(StackContainer)
 
 export default AppContainer
