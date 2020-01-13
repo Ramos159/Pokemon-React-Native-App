@@ -1,9 +1,9 @@
 import React from 'react'
 import { Icon } from 'react-native-elements'
 import { createAppContainer } from 'react-navigation'
-import { createStackNavigator } from 'react-navigation-stack'
+// import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
-import HomeScreen from '../screens/homeScreen'
+import ProfileStackNavigator from '../Profile/profileStackNavigator'
 import SelectScreen from '../screens/selectScreen'
 import DetailScreen from '../screens/detailScreen'
 
@@ -22,15 +22,15 @@ const Tabs = createBottomTabNavigator({
             tabBarIcon: ({ tintColor }) => <Icon name="list" type="entypo" size={28} color={tintColor} />
         }
     },
-    'Home':{
-        screen: HomeScreen,
+    'Profile':{
+        screen: ProfileStackNavigator,
         navigationOptions:{
-            tabBarLabel:'Home',
-            tabBarIcon: ({ tintColor }) => <Icon name="home" type="entypo" size={28} color={tintColor} />
+            tabBarLabel:'Profile',
+            tabBarIcon: ({ tintColor }) => <Icon name="user" type="entypo" size={28} color={tintColor} />
         }
     }
 })
-const StackContainer = createStackNavigator({Tabs},{headerMode:"none"})
-const AppContainer = createAppContainer(StackContainer)
+// const StackContainer = createStackNavigator({Tabs},{headerMode:"none"})
+const AppContainer = createAppContainer(Tabs)
 
 export default AppContainer
