@@ -1,4 +1,10 @@
-# potential-react-native-project
-playing around with react native for now
+# Pokemon-React-Native-App
+Pokemon centered React Native Application built in TypeScript
 
-probably looking to recreate a simple project of mine, maybe the pokemon one
+Soon to come features:  
+-Information on All Regions  
+-Information about Specific Pokedexs  
+-Profile creation and customization, favoriting regions and pokemon  
+-proper user authetitcation 
+
+Eventually when frontend is stubbed out, ill be building a backend in python for all data.
