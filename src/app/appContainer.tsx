@@ -5,17 +5,17 @@ import { createAppContainer } from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import ProfileStackNavigator from '../Profile/profileStackNavigator'
 import RegionSelectScreen from '../Regions/regionSelectScreen'
-import DetailScreen from '../screens/detailScreen'
+import DetailScreen from '../Pokedexs/pokedexSelectScreen'
 
 const Tabs = createBottomTabNavigator({
-    'Select':{
+    'Regions':{
         screen: RegionSelectScreen,
         navigationOptions:{
             tabBarLabel: 'Regions',
             tabBarIcon: ({ tintColor }) => <Icon name="compass" type="entypo" size={28} color={tintColor} />
         }
     },
-    'Detail':{
+    'Pokedexs':{
         screen: DetailScreen,
         navigationOptions:{
             tabBarLabel: 'Pokedexs',
@@ -28,7 +28,9 @@ const Tabs = createBottomTabNavigator({
             tabBarLabel:'Profile',
             tabBarIcon: ({ tintColor }) => <Icon name="user" type="entypo" size={28} color={tintColor} />
         }
-    }
+    },
+},{
+    initialRouteName:"Profile"
 })
 // const StackContainer = createStackNavigator({Tabs},{headerMode:"none"})
 const AppContainer = createAppContainer(Tabs)

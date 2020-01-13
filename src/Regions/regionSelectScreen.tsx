@@ -2,7 +2,7 @@ import React from 'react'
 import {View,Text,Button} from 'react-native'
 import RegionItem from './regionItem'
 
-export default class RegionSelectScreen extends React.Component {
+export default class RegionSelectScreen extends React.Component{
   regions = [
     {
       name:"Kanto",

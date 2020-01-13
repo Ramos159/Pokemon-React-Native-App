@@ -1,7 +1,22 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { 
+	View, 
+	Text, 
+	StyleSheet 
+} from 'react-native'
+import {
+	NavigationParams,
+	NavigationScreenProp,
+	NavigationState
+  } from 'react-navigation'
 
-export default class RegionItem extends React.Component{
+interface Props{
+  name: string,
+  games: Array<String>,
+//   navigation: NavigationScreenProp<NavigationState,NavigationParams>
+}
+
+export default class RegionItem extends React.Component<Props>{
 
   createGamesString = (gamesArray) => {
     let string = "Games: "
