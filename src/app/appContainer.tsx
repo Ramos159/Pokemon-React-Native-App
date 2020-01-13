@@ -4,21 +4,21 @@ import { createAppContainer } from 'react-navigation'
 // import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import ProfileStackNavigator from '../Profile/profileStackNavigator'
-import SelectScreen from '../screens/selectScreen'
+import RegionSelectScreen from '../Regions/regionSelectScreen'
 import DetailScreen from '../screens/detailScreen'
 
 const Tabs = createBottomTabNavigator({
     'Select':{
-        screen: SelectScreen,
+        screen: RegionSelectScreen,
         navigationOptions:{
-            tabBarLabel: 'Select',
+            tabBarLabel: 'Regions',
             tabBarIcon: ({ tintColor }) => <Icon name="compass" type="entypo" size={28} color={tintColor} />
         }
     },
     'Detail':{
         screen: DetailScreen,
         navigationOptions:{
-            tabBarLabel: 'Detail',
+            tabBarLabel: 'Pokedexs',
             tabBarIcon: ({ tintColor }) => <Icon name="list" type="entypo" size={28} color={tintColor} />
         }
     },
