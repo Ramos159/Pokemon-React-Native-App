@@ -2,7 +2,8 @@ import React from 'react'
 import { 
 	View, 
 	Text, 
-	StyleSheet 
+  StyleSheet,
+  TouchableOpacity
 } from 'react-native'
 import {
 	NavigationParams,
@@ -10,40 +11,53 @@ import {
 	NavigationState
   } from 'react-navigation'
 
+interface RegionItemObject{
+	name: String,
+	games: Array<String>
+}
+
 interface Props{
-  name: string,
-  games: Array<String>,
-//   navigation: NavigationScreenProp<NavigationState,NavigationParams>
+	id: Number,
+  	region: RegionItemObject,
+  	navigation: NavigationScreenProp<NavigationState,NavigationParams>
 }
 
 export default class RegionItem extends React.Component<Props>{
 
-  createGamesString = (gamesArray) => {
-    let string = "Games: "
+  	createGamesString = (gamesArray) => {
+    	let string = "Games: "
 
-   for(let i = 0;i < gamesArray.length;i++){
-      if(i == gamesArray.length -1 ){ 
-        string += `${gamesArray[i]}`
-      }
-      else{
-        string += `${gamesArray[i]}, `
-      }
-   }
-    return string
+  		for(let i = 0;i < gamesArray.length;i++){
+    		if(i == gamesArray.length -1 ){ 
+        		string += `${gamesArray[i]}`
+      		}
+      		else{
+        		string += `${gamesArray[i]}, `
+      		}
+   		}
+    	return string
+  	}
+
+  // Stack navigator likes to pass params instead of props, they essentially work the same way 
+  handleItemPress = (event) => {
+	  this.props.navigation.navigate("RegionDetail",{
+		  name: this.props.region.name
+	  })
   }
 
   render(){
-    return(
-      <View style={styles.rowContainer}>
-        <View style={styles.rowText}>
-          <Text style={styles.name}>{this.props.name}</Text>
-          <Text style={styles.games}>{this.createGamesString(this.props.games)}</Text>
-        </View>
-      </View>
+	return(
+    	<TouchableOpacity style={styles.rowContainer} onPress={(event)=>this.handleItemPress(event)}>
+			<View style={styles.rowText}>
+    			<Text style={styles.name}>{this.props.region.name}</Text>
+    			<Text style={styles.games}>{this.createGamesString(this.props.region.games)}</Text>
+    		</View>
+    	</TouchableOpacity>
       )
     }
 }
 
+// styles
 const styles = StyleSheet.create({
     rowContainer: {
       flexDirection: 'row',

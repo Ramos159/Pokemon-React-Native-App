@@ -15,8 +15,13 @@ interface Props{
 	navigation: NavigationScreenProp<NavigationParams,NavigationState>
 }
 
+interface User{
+	userName: string,
+	favorites: Object
+}
+
 interface State{
-  	user: object
+  	user: User
 }
 
 export default class ProfileScreen extends React.Component<Props,State>{
