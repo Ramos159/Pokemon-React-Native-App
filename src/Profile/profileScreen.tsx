@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-	View,
+	SafeAreaView,
 	Text,
 	Button, 
 	StyleSheet} from 'react-native'
@@ -35,10 +35,10 @@ export default class ProfileScreen extends React.Component<Props,State>{
 
   	render() {
   		return (
-  	    	<View style={styles.container}>
+  	    	<SafeAreaView style={styles.container}>
   	    		<Text style={{fontWeight:"bold",fontSize:20}}>Profile</Text>
   	    		<Button title="Edit Profile" onPress={(events)=>{this.props.navigation.navigate('Edit')}}/>
-  	    	</View>
+  	    	</SafeAreaView>
   	  );
   	}
 }

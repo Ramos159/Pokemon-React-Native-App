@@ -2,7 +2,6 @@ import React from 'react'
 import {
   	ScrollView,
   	Text,
-  	Button,
 	SafeAreaView,
 	StatusBar
 } from 'react-native'
