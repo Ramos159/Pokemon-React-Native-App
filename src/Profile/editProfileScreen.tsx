@@ -1,10 +1,12 @@
 import React from 'react'
 import {
     SafeAreaView,
-    Text} from 'react-native'
+    Text
+} from 'react-native'
+import User from "../customInterfaces/user"
 
 interface Props{
-    user: object
+    user: User
 }
 
 interface State{
@@ -15,7 +17,7 @@ interface State{
 
 export default class EditProfileScreen extends React.Component<Props,State>{
 
-    state = {
+    state: State = {
         newUsername:"",
         password: "",
         passwordConfirm:""

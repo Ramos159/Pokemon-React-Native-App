@@ -2,14 +2,10 @@ import React from 'react'
 import { 
 	View, 
 	Text, 
-  StyleSheet,
-  TouchableOpacity
+  	StyleSheet,
+  	TouchableOpacity
 } from 'react-native'
-import {
-	NavigationParams,
-	NavigationScreenProp,
-	NavigationState
-  } from 'react-navigation'
+import NavigationPropType from '../customTypes/navigationPropType'
 
 interface RegionItemObject{
 	name: String,
@@ -19,12 +15,12 @@ interface RegionItemObject{
 interface Props{
 	id: Number,
   	region: RegionItemObject,
-  	navigation: NavigationScreenProp<NavigationState,NavigationParams>
+  	navigation: NavigationPropType
 }
 
 export default class RegionItem extends React.Component<Props>{
 
-  	createGamesString = (gamesArray) => {
+  	createGamesString = (gamesArray: Array<String>): String => {
     	let string = "Games: "
 
   		for(let i = 0;i < gamesArray.length;i++){
@@ -38,12 +34,13 @@ export default class RegionItem extends React.Component<Props>{
     	return string
   	}
 
-  // Stack navigator likes to pass params instead of props, they essentially work the same way 
-  handleItemPress = (event) => {
-	  this.props.navigation.navigate("RegionDetail",{
-		  name: this.props.region.name
-	  })
-  }
+  	// Stack navigator likes to pass params instead of props, they essentially work the same way 
+	handleItemPress = (event): void => {
+      	console.log(typeof(Event))
+	    	this.props.navigation.navigate("RegionDetail",{
+		  		name: this.props.region.name
+	  	})
+  	}
 
   render(){
 	return(
@@ -60,31 +57,31 @@ export default class RegionItem extends React.Component<Props>{
 // styles
 const styles = StyleSheet.create({
     rowContainer: {
-      flexDirection: 'row',
-      backgroundColor: '#FFF',
-      height: 100,
-      padding: 10,
-      marginRight: 10,
-      marginLeft: 10,
-      marginTop: 10,
-      borderRadius: 4,
-      shadowOffset:{  width: 1,  height: 1,  },
-      shadowColor: '#CCC',
-      shadowOpacity: 1.0,
-      shadowRadius: 1
+      	flexDirection: 'row',
+      	backgroundColor: '#FFF',
+      	height: 100,
+      	padding: 10,
+      	marginRight: 10,
+      	marginLeft: 10,
+      	marginTop: 10,
+      	borderRadius: 4,
+      	shadowOffset:{  width: 1,  height: 1,  },
+      	shadowColor: '#CCC',
+      	shadowOpacity: 1.0,
+      	shadowRadius: 1
     },
     name: {
-      paddingLeft: 10,
-      paddingTop: 5,
-      fontSize: 16,
-      fontWeight: 'bold',
-      color: '#777'
+      	paddingLeft: 10,
+      	paddingTop: 5,
+      	fontSize: 16,
+      	fontWeight: 'bold',
+      	color: '#777'
     },
     games: {
-      paddingLeft: 10,
-      marginTop: 5,
-      fontSize: 14,
-      color: '#777'
+      	paddingLeft: 10,
+      	marginTop: 5,
+      	fontSize: 14,
+      	color: '#777'
     },
     // thumbnail: {
     //   flex: 1,

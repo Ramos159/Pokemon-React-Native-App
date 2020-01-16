@@ -6,15 +6,11 @@ import {
 	StatusBar
 } from 'react-native'
 import RegionItem from './regionItem'
-import {
-	NavigationParams,
-	NavigationScreenProp,
-	NavigationState
-  } from 'react-navigation' 
-import Constants from 'expo-constants'
+import NavigationPropType from '../customTypes/navigationPropType'
+import RegionObject from '../customInterfaces/regionObject'
 
 interface Props{
-  navigation: NavigationScreenProp<NavigationState,NavigationParams>
+	navigation: NavigationPropType
 }
 
 export default class RegionSelectScreen extends React.Component<Props>{
@@ -54,23 +50,22 @@ export default class RegionSelectScreen extends React.Component<Props>{
 		}
 	]
 
-  renderRegions = (regionsArray) => {
-
-    return regionsArray.map((region,id)=><RegionItem id={id} navigation={this.props.navigation} region={region}/>)
-  }
+ 	renderRegions = (regionsArray: Array<RegionObject>): Array<JSX.Element> => {
+    	return regionsArray.map((region,id)=><RegionItem id={id} navigation={this.props.navigation} region={region}/>)
+	}
+	  
     render() {
-		console.log(Constants)
-      return (
-		<>
-		<SafeAreaView style={{flex:0,backgroundColor:"white"}}/>
-		<StatusBar barStyle="dark-content"/>
-		<SafeAreaView style={{flex:1,backgroundColor:"white"}}>
-        	<ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center',paddingTop:50,backgroundColor:'white'}}>
-				<Text style={{fontWeight:"bold",fontSize:20}}>Regions</Text>
-        	  	{this.renderRegions(this.regions)}
-        	</ScrollView>
-		</SafeAreaView>
+      	return (
+			<>
+			<SafeAreaView style={{flex:0,backgroundColor:"white"}}/>
+			<StatusBar barStyle="dark-content"/>
+			<SafeAreaView style={{flex:1,backgroundColor:"white"}}>
+        		<ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center',paddingTop:50,backgroundColor:'white'}}>
+					<Text style={{fontWeight:"bold",fontSize:20}}>Regions</Text>
+        	  		{this.renderRegions(this.regions)}
+        		</ScrollView>
+			</SafeAreaView>
 		</>
-      );
+      )
     }
   }

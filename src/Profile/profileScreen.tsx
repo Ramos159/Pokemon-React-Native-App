@@ -3,21 +3,15 @@ import {
 	SafeAreaView,
 	Text,
 	Button, 
-	StyleSheet} from 'react-native'
-import {
-	NavigationParams,
-	NavigationScreenProp,
-	NavigationState
-  } from 'react-navigation'
+	StyleSheet
+} from 'react-native'
+import User from '../customInterfaces/user'
+import NavigationPropType from '../customTypes/navigationPropType'
+
 
 interface Props{
-	user: object,
-	navigation: NavigationScreenProp<NavigationParams,NavigationState>
-}
-
-interface User{
-	userName: string,
-	favorites: Object
+	user: User,
+	navigation: NavigationPropType
 }
 
 interface State{
@@ -26,7 +20,7 @@ interface State{
 
 export default class ProfileScreen extends React.Component<Props,State>{
 
-	state ={
+	state: State ={
     	user:{
       	userName:null,
       	favorites:[]
@@ -34,12 +28,12 @@ export default class ProfileScreen extends React.Component<Props,State>{
   	}
 
   	render() {
-  		return (
+  		return(
   	    	<SafeAreaView style={styles.container}>
   	    		<Text style={{fontWeight:"bold",fontSize:20}}>Profile</Text>
   	    		<Button title="Edit Profile" onPress={(events)=>{this.props.navigation.navigate('Edit')}}/>
   	    	</SafeAreaView>
-  	  );
+  	  	)
   	}
 }
 

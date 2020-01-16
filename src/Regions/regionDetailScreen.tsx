@@ -5,19 +5,10 @@ import {
     StyleSheet,
     StatusBar
 } from 'react-native'
-import {
-	NavigationParams,
-	NavigationScreenProp,
-    NavigationState,
-  } from 'react-navigation'
-
-// not sure if making my own state is the right way but this seems harmless
-interface CustomNavigationState extends NavigationState{
-    name: String
-}
+import NavigationPropType from '../customTypes/navigationPropType'
 
 interface Props{
-    navigation:NavigationScreenProp<NavigationParams,CustomNavigationState>,
+    navigation: NavigationPropType,
 }
 
 export default class RegionDetailScreen extends React.Component<Props>{
