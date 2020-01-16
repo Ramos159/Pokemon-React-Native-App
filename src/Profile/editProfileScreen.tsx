@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{Component} from 'react'
 import {
     SafeAreaView,
     Text
@@ -15,7 +15,7 @@ interface State{
     passwordConfirm: string
 }
 
-export default class EditProfileScreen extends React.Component<Props,State>{
+export default class EditProfileScreen extends Component<Props,State>{
 
     state: State = {
         newUsername:"",

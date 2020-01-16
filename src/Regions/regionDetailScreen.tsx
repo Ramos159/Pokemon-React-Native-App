@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{Component} from 'react'
 import { 
 	SafeAreaView, 
 	Text, 
@@ -11,7 +11,7 @@ interface Props{
     navigation: NavigationPropType,
 }
 
-export default class RegionDetailScreen extends React.Component<Props>{
+export default class RegionDetailScreen extends Component<Props>{
     render(){
         return(
             <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,backgroundColor:"white"}}>

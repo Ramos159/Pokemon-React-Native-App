@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{Component} from 'react'
 import { 
 	View, 
 	Text, 
@@ -13,12 +13,12 @@ interface RegionItemObject{
 }
 
 interface Props{
-	id: Number,
+	key: Number,
   	region: RegionItemObject,
   	navigation: NavigationPropType
 }
 
-export default class RegionItem extends React.Component<Props>{
+export default class RegionItem extends Component<Props>{
 
   	createGamesString = (gamesArray: Array<String>): String => {
     	let string = "Games: "
@@ -35,8 +35,7 @@ export default class RegionItem extends React.Component<Props>{
   	}
 
   	// Stack navigator likes to pass params instead of props, they essentially work the same way 
-	handleItemPress = (event): void => {
-      	console.log(typeof(Event))
+	handleItemPress = (event: Object): void => {
 	    	this.props.navigation.navigate("RegionDetail",{
 		  		name: this.props.region.name
 	  	})
