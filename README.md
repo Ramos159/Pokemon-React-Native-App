@@ -10,6 +10,9 @@ Soon to come features:
 Eventually when frontend is stubbed out, ill be building a backend in python for all data.  
 
 # Instructions to view work-in-progress (iOS only atm):  
+
+**be sure to have Node, NPM and Expo CLI installed**
+
 1. clone the repo  
 2. download and install the expo app, sign up on either iPhone or iPhone simulator  
 3. 'npm install' to get dependencies  
