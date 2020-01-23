@@ -12,15 +12,17 @@ interface Props{
 interface State{
     newUsername: string,
     password: string,
-    passwordConfirm: string
+    passwordConfirm: string,
+    emailConfirm: string
 }
 
 export default class EditProfileScreen extends Component<Props,State>{
 
-    state: State = {
+    state = {
         newUsername:"",
         password: "",
-        passwordConfirm:""
+        passwordConfirm:"",
+        emailConfirm: ""
     }
     
     render() {

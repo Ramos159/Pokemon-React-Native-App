@@ -5,35 +5,24 @@ import {
 	Text,
 	Button, 
 	StyleSheet,
-	StatusBar
 } from 'react-native'
-import User from '../customInterfaces/user'
+// import UserInterface from '../customInterfaces/user'
 import NavigationPropType from '../customTypes/navigationPropType'
+import StatusBarHeader from '../Components/statusBarHeader'
 
 
 interface Props{
-	user: User,
 	navigation: NavigationPropType
 }
 
-interface State{
-  	user: User
-}
+// interface State{
+// }
 
-export default class ProfileScreen extends Component<Props,State>{
-
-	state: State ={
-    	user:{
-      	userName:null,
-      	favorites:[]
-    	}
-  	}
-
+export default class ProfileScreen extends Component<Props>{
   	render() {
   		return(		
 		<>	
-			<SafeAreaView style={{flex:0,backgroundColor:"white"}}/>
-			<StatusBar barStyle="dark-content"/>
+			<StatusBarHeader/>
 			<SafeAreaView style={{flex:1,backgroundColor:"white",}}>
 				<Text style={{fontWeight:"bold",fontSize:20,textAlign:"center",paddingTop:25,paddingBottom:25}}>Profile</Text>
         		<ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center',backgroundColor:'white'}}>
