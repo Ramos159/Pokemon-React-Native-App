@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs'
 import ProfileStackNavigator from '../Profile/profileStackNavigator'
 import RegionStackNavigator from '../Regions/regionStackNavigator'
 import PokedexSelectScreen from '../Pokedexs/pokedexSelectScreen'
+
 const Tabs = createBottomTabNavigator({
     'Regions':{
         screen: RegionStackNavigator,
@@ -24,7 +25,7 @@ const Tabs = createBottomTabNavigator({
         screen: ProfileStackNavigator,
         navigationOptions:{
             tabBarLabel:'Profile',
-            tabBarIcon: ({ tintColor }) => <Icon name="user" type="entypo" size={28} color={tintColor} />
+            tabBarIcon: ({ tintColor }) => <Icon name="user" type="feather" size={28} color={tintColor} />
         }
     },
 },{
