@@ -7,9 +7,6 @@ const ProfileStackNavigator = createStackNavigator({
     Profile: ProfileScreen,
     Edit: EditProfileScreen,
     Auth: AuthFormScreen
-    // navigationOptions: ({ navigation }) => ({
-    //     headerTransparent:true,
-    //   })
-},{initialRouteName:"Auth",headerMode:"none"})
+},{initialRouteName:"Auth",headerMode:"none",})
 
 export default ProfileStackNavigator
