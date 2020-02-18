@@ -1,5 +1,5 @@
 import React,{ Component } from 'react'
-import { View,Text,ActivityIndicator } from 'react-native'
+import { View,Text,ActivityIndicator,StyleSheet } from 'react-native'
 import { Input,Icon,Button } from 'react-native-elements'
 import StatusBarHeader from '../Components/statusBarHeader'
 import NavigationPropType from '../customTypes/navigationPropType'
@@ -144,11 +144,26 @@ export default class AuthFormScreen extends Component<Props,State>{
     }
 
     handleLogin = () => {
+        // basic mock validations just for now
+        // return null to exit function
+        if(this.state.username !== "edwin"){
+            alert('wrong username')
+            return null
+        }
+        if(this.state.password !== 'ramos'){
+            alert("wrong password")
+            return null
+        }
+
         this.setState({
             loading:true
         },()=>{
+            // simulating a log-in experience here
             setTimeout(()=>{
-                this.props.navigation.navigate("Profile")
+                this.props.navigation.navigate("Profile",{
+                    username:this.state.username,
+                    password:this.state.password
+                })
                 this.setState({
                     loading:false
                 })
@@ -157,7 +172,32 @@ export default class AuthFormScreen extends Component<Props,State>{
     }
 
     handleRegister = () => {
-        alert('about to register')
+        // basic mock validations just for now
+        // return null to exit function
+        if(this.state.username === "edwin"){
+            alert('username is already taken')
+            return null
+        }
+        if(this.state.email === 'edwinramos269@gmail.com'){
+            alert('email is already taken!')
+            return null
+        }
+
+        this.setState({
+            loading:true
+        },()=>{
+            // simulating a log-in experience here
+            setTimeout(()=>{
+                this.props.navigation.navigate("Profile",{
+                    username:this.state.username,
+                    password:this.state.password,
+                    email:this.state.email
+                })
+                this.setState({
+                    loading:false
+                })
+            },3000)
+        })  
     }
 
     verifyCorrectFormFields = () => {
@@ -184,10 +224,10 @@ export default class AuthFormScreen extends Component<Props,State>{
 
     renderAuthForm = () =>{
         return(
-            <View style={{flex:1,backgroundColor:"white", alignItems:'center',justifyContent:'center',width:300}}>
-                <Text style={{fontWeight:'bold',fontSize:20}}>{this.state.login? "Login" : "Register"}</Text>
+            <View style={styles.formContainer}>
+                <Text style={styles.headerText}>{this.state.login? "Login" : "Register"}</Text>
                 {this.loginOrRegister()}
-                <Button onPress={()=>{this.verifyCorrectFormFields()}}style={{width:200,paddingTop:20,paddingBottom:20}} title={this.handleButtonTitle()} />
+                <Button onPress={()=>{this.verifyCorrectFormFields()}}style={styles.button} title={this.handleButtonTitle()} />
                 <Text onPress={()=>{this.handleFormChange()}}>{this.handleChangeFormText()}</Text>
             </View>
         )
@@ -197,10 +237,36 @@ export default class AuthFormScreen extends Component<Props,State>{
         return(
             <>
                 <StatusBarHeader/>
-                <View style={{flex:1,backgroundColor:"white", alignItems:'center',justifyContent:'center'}}>
+                <View style={styles.container}>
                     {this.state.loading ? <ActivityIndicator size="large" color="black" /> : this.renderAuthForm()}
                 </View>
             </>
         )
     }
 }
+
+//stylesheet
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        backgroundColor:'white',
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    formContainer:{
+        flex:1,
+        backgroundColor:'white',
+        alignItems:'center',
+        justifyContent:'center',
+        width:300
+    },
+    button:{
+        width:200,
+        paddingTop:20,
+        paddingBottom:20
+    },
+    headerText:{
+        fontWeight:"bold",
+        fontSize:20
+    }
+})
