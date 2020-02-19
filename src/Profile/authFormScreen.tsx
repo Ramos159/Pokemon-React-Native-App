@@ -1,10 +1,12 @@
 import React,{ Component } from 'react'
 import { 
+    SafeAreaView,
     View,
     Text, 
     ActivityIndicator, 
     StyleSheet, 
-    StatusBar 
+    StatusBar,
+    TouchableOpacity
 } from 'react-native'
 import { Input,Icon,Button } from 'react-native-elements'
 import NavigationPropType from '../customTypes/navigationPropType'
@@ -227,25 +229,48 @@ export default class AuthFormScreen extends Component<Props,State>{
 
     }
 
-    renderAuthForm = () =>{
+    renderAuthForm = () => {
         return(
-            <View style={styles.formContainer}>
-                <StatusBar barStyle='dark-content'/>
-                <Text style={styles.headerText}>{this.state.login? "Login" : "Register"}</Text>
+            <View 
+                style={styles.formContainer}>
+                <Text 
+                    style={styles.headerText}> {this.state.login? "Login" : "Register"}
+                </Text>
                 {this.loginOrRegister()}
-                <Button onPress={()=>{this.verifyCorrectFormFields()}}style={styles.button} title={this.handleButtonTitle()} />
-                <Text onPress={()=>{this.handleFormChange()}}>{this.handleChangeFormText()}</Text>
+                <Button 
+                    onPress={()=>{this.verifyCorrectFormFields()}}
+                    style={styles.button} 
+                    title={this.handleButtonTitle()} 
+                />
+                <Text onPress={()=>{this.handleFormChange()}}>
+                    {this.handleChangeFormText()}
+                </Text>
             </View>
         )
     }
 
+    handleSettingsPress = () => {
+        alert('drawer tab soon')
+    }
+
     render(){
         return(
-            <>
-                <View style={styles.container}>
-                    {this.state.loading ? <ActivityIndicator size="large" color="black" /> : this.renderAuthForm()}
+            <SafeAreaView 
+                style={styles.container}>
+                <StatusBar 
+                    barStyle='dark-content'
+                />
+                <View>
+                    <TouchableOpacity style={{position:'absolute',left:130}} >
+                        <Icon
+                            name='settings'
+                            type='feather'
+                            onPress={()=>{this.handleSettingsPress()}}
+                        />
+                    </TouchableOpacity>
                 </View>
-            </>
+                {this.state.loading ? <ActivityIndicator size="large" color="black" /> : this.renderAuthForm()}
+            </SafeAreaView>
         )
     }
 }
@@ -256,14 +281,15 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor:'white',
         alignItems:'center',
-        justifyContent:'center'
+        flexDirection:'column'
     },
     formContainer:{
         flex:1,
         backgroundColor:'white',
         alignItems:'center',
         justifyContent:'center',
-        width:300
+        width:300,
+        zIndex:-10
     },
     button:{
         width:200,

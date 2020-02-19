@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
       	paddingTop: 5,
       	fontSize: 16,
       	fontWeight: 'bold',
-      	color: '#777'
+      	color: 'black'
     },
     games: {
       	paddingLeft: 10,
