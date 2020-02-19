@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.5",
+    "@react-navigation/drawer": "^5.0.5",
     "@types/jest": "^24.0.25",
     "@types/react-test-renderer": "^16.9.1",
     "expo": "~36.0.0",
@@ -24,6 +25,7 @@
     "react-native-vector-icons": "^6.6.0",
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.0.10",
+    "react-navigation-drawer": "^2.3.4",
     "react-navigation-stack": "^2.0.12",
     "react-navigation-tabs": "^2.7.0",
     "ts-jest": "^24.3.0"

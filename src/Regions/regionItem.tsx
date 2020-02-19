@@ -43,7 +43,9 @@ export default class RegionItem extends Component<Props>{
 
   render(){
 	return(
-    	<TouchableOpacity style={styles.rowContainer} onPress={(event)=>this.handleItemPress(event)}>
+		<TouchableOpacity 
+			style={styles.rowContainer} 
+			onPress={(event)=>this.handleItemPress(event)}>
 			<View style={styles.rowText}>
     			<Text style={styles.name}>{this.props.region.name}</Text>
     			<Text style={styles.games}>{this.createGamesString(this.props.region.games)}</Text>

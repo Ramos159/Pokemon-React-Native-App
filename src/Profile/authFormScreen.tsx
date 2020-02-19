@@ -250,7 +250,7 @@ export default class AuthFormScreen extends Component<Props,State>{
     }
 
     handleSettingsPress = () => {
-        alert('drawer tab soon')
+        this.props.navigation.openDrawer()
     }
 
     render(){
