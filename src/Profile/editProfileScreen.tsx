@@ -4,8 +4,7 @@ import {
     Text,
     StatusBar
 } from 'react-native'
-import User from "../customInterfaces/user"
-import StatusBarHeader from '../Components/statusBarHeader'
+import User from "../customInterfaces/userInterface"
 
 interface Props{
     user: User

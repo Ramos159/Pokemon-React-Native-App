@@ -9,13 +9,23 @@ import {
     TouchableOpacity
 } from 'react-native'
 import { Input,Icon,Button } from 'react-native-elements'
-import NavigationPropType from '../customTypes/navigationPropType'
+import { CompositeNavigationProp } from '@react-navigation/native';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { StackNavigationProp } from '@react-navigation/stack';
+import ProfileStackParamList from '../customTypes/profileStackParamList'
+import RootTabParamList from '../customTypes/rootTabParamlist'
 
-interface Props{
-    navigation: NavigationPropType
+type AuthFormScreenNavigationProp = CompositeNavigationProp<
+BottomTabNavigationProp<RootTabParamList,'Profile'>,
+StackNavigationProp<ProfileStackParamList,'AuthForm'>
+>
+
+
+type Props = {
+    navigation: AuthFormScreenNavigationProp
 }
 
-interface State{
+type State = {
     username: string,
     password: string,
     email: string,
@@ -167,9 +177,13 @@ export default class AuthFormScreen extends Component<Props,State>{
         },()=>{
             // simulating a log-in experience here
             setTimeout(()=>{
-                this.props.navigation.navigate("Profile",{
-                    username:this.state.username,
-                    password:this.state.password
+                this.props.navigation.push("Profile",{
+                    // mimic user object
+                    user:{
+                        username: this.state.username,
+                        password: this.state.password,
+                        userID:1
+                    }
                 })
                 this.setState({
                     loading:false
@@ -195,10 +209,14 @@ export default class AuthFormScreen extends Component<Props,State>{
         },()=>{
             // simulating a log-in experience here
             setTimeout(()=>{
-                this.props.navigation.navigate("Profile",{
-                    username:this.state.username,
-                    password:this.state.password,
-                    email:this.state.email
+                this.props.navigation.push("Profile",{
+                    // mimic user object
+                    user:{
+                        username: this.state.username,
+                        password: this.state.password,
+                        userID:1,
+                        email: this.state.email
+                    }
                 })
                 this.setState({
                     loading:false
@@ -250,7 +268,7 @@ export default class AuthFormScreen extends Component<Props,State>{
     }
 
     handleSettingsPress = () => {
-        this.props.navigation.openDrawer()
+        alert('drawer tab soon')
     }
 
     render(){

@@ -4,8 +4,9 @@ import { Ionicons as Icon } from '@expo/vector-icons'
 import RegionStackNavigator from '../Regions/regionStackNavigator'
 import PokedexSelectScreen from '../Pokedexs/pokedexSelectScreen'
 import ProfileStackNavigator from '../Profile/profileStackNavigator'
+import RootTabParamList from '../customTypes/rootTabParamlist'
 
-const Tab = createBottomTabNavigator()
+const Tab = createBottomTabNavigator<RootTabParamList>()
 
 export default function AppTab() {
     return(

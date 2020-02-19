@@ -37,7 +37,7 @@ export default class RegionItem extends Component<Props>{
   	// Stack navigator likes to pass params instead of props, they essentially work the same way 
 	handleItemPress = (event: Object): void => {
 	    	this.props.navigation.navigate("RegionDetail",{
-		  		name: this.props.region.name
+		  		region: this.props.region
 	  	})
   	}
 

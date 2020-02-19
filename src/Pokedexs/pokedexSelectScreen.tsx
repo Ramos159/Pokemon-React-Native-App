@@ -7,18 +7,13 @@ import {
   ScrollView
 } from 'react-native'
 import { PokedexItem } from './pokedexItem'
-import NavigationPropType from '../customTypes/navigationPropType'
+import NavigationPropType from '../customTypes/stacknavigationPropType'
 
 interface Props{
 	navigation: NavigationPropType
 }
 
 export default class PokedexSelectScreen extends Component<Props> {
-
-	constructor(props){
-		super(props)
-		console.log(this.props)
-	}
 
 	pokedexes = [
 		{
