@@ -15,12 +15,13 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import ProfileStackParamList from '../customTypes/profileStackParamList'
 import RootTabParamList from '../customTypes/rootTabParamlist'
 
+// we use compositenavprop to combine both props type
 type AuthFormScreenNavigationProp = CompositeNavigationProp<
 BottomTabNavigationProp<RootTabParamList,'Profile'>,
 StackNavigationProp<ProfileStackParamList,'AuthForm'>
 >
 
-
+// this combines the bottomtabnav and stacknav props for type checking
 type Props = {
     navigation: AuthFormScreenNavigationProp
 }

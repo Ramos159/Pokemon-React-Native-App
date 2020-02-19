@@ -7,9 +7,15 @@ import ProfileStackParamList from '../customTypes/profileStackParamList'
 import RootTabParamList from '../customTypes/rootTabParamList'
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 
+// creates stacknav checking for proper params against ProfileParamList
 const Stack = createStackNavigator<ProfileStackParamList>()
 
-export default class  ProfileStackNavigator extends Component{
+// since this stack is child of a bottom tab, we should give it the bottom tab props
+type Props = {
+    navigation:BottomTabNavigationProp<RootTabParamList,"Profile">
+}
+
+export default class  ProfileStackNavigator extends Component<Props>{
     render(){
         return(
             <Stack.Navigator

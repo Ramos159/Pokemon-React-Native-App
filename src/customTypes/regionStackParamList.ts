@@ -1,4 +1,5 @@
 import RegionObject from '../customInterfaces/regionObject'
+import { StackNavigationProp } from '@react-navigation/stack'
 
 type RegionStackParamList = {
     RegionSelect:{

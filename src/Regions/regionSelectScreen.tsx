@@ -6,11 +6,21 @@ import {
 	StatusBar
 } from 'react-native'
 import RegionItem from './regionItem'
-import NavigationPropType from '../customTypes/navigationPropType'
 import RegionObject from '../customInterfaces/regionObject'
+import { CompositeNavigationProp } from '@react-navigation/native';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { StackNavigationProp } from '@react-navigation/stack';
+import RegionStackParamList from '../customTypes/RegionStackParamList'
+import RootTabParamList from '../customTypes/rootTabParamlist'
+
+// we use compositenavprop to combine both props type
+type RegionSelectScreenNavigationProp = CompositeNavigationProp<
+BottomTabNavigationProp<RootTabParamList,'Regions'>,
+StackNavigationProp<RegionStackParamList,'RegionSelect'>
+>
 
 interface Props{
-	navigation: NavigationPropType,
+	navigation: RegionSelectScreenNavigationProp,
 	regions:Array<RegionObject>
 }
 

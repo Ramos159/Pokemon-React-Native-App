@@ -5,7 +5,7 @@ import {
   	StyleSheet,
   	TouchableOpacity
 } from 'react-native'
-import NavigationPropType from '../customTypes/navigationPropType'
+import NavigationPropType from '../customTypes/stacknavigationPropType'
 
 interface PokedexItemObj{
 	name: string,

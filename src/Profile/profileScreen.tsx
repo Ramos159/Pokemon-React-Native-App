@@ -50,11 +50,11 @@ export default class ProfileScreen extends Component<Props>{
   	}
 }
 
-// const styles = StyleSheet.create({
-// 	container:{
-// 		flex: 1, 
-// 		alignItems: 'center',
-// 		backgroundColor:"white",
-// 		// marginTop:60
-// 	}
-// })
+const styles = StyleSheet.create({
+	container:{
+		flex: 1, 
+		alignItems: 'center',
+		backgroundColor:"white",
+		// marginTop:60
+	}
+})

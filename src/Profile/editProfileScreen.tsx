@@ -5,9 +5,25 @@ import {
     StatusBar
 } from 'react-native'
 import User from "../customInterfaces/userInterface"
+import { CompositeNavigationProp } from '@react-navigation/native';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native'
+import ProfileStackParamList from '../customTypes/profileStackParamList'
+import RootTabParamList from '../customTypes/rootTabParamlist'
 
-interface Props{
-    user: User
+// combine both prop types from tab and stack
+type ProfileScreenNavigationProp = CompositeNavigationProp<
+BottomTabNavigationProp<RootTabParamList,'Profile'>,
+StackNavigationProp<ProfileStackParamList,'EditProfile'>
+>
+
+// get proper route props for this screen
+type ProfileScreenRouteProp = RouteProp<ProfileStackParamList, 'EditProfile'>;
+
+type Props = {
+	navigation: ProfileScreenNavigationProp,
+	route: ProfileScreenRouteProp
 }
 
 interface State{

@@ -5,17 +5,24 @@ import {
   	StyleSheet,
   	TouchableOpacity
 } from 'react-native'
-import NavigationPropType from '../customTypes/navigationPropType'
+import { StackNavigationProp } from '@react-navigation/stack';
+import RegionStackParamList from '../customTypes/regionStackParamList'
+import RegionObject from '../customInterfaces/regionObject';
+import { CompositeNavigationProp } from '@react-navigation/native';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import RootTabParamList from '../customTypes/rootTabParamlist'
 
-export interface RegionItemType{
-	name: String,
-	games: Array<String>
-}
+// we use compositenavprop to combine both props type
+// this is indentical to the props of region select, couldnt find a way to seperate props
+type RegionDetailScreenNavigationProp = CompositeNavigationProp<
+BottomTabNavigationProp<RootTabParamList,'Regions'>,
+StackNavigationProp<RegionStackParamList,'RegionSelect'>
+>
 
-interface Props{
-	key: Number,
-  	region: RegionItemType,
-  	navigation: NavigationPropType
+type Props = {
+	navigation: RegionDetailScreenNavigationProp,
+	key: number,
+	region: RegionObject,
 }
 
 export default class RegionItem extends Component<Props>{
