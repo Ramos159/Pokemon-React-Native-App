@@ -1,7 +1,12 @@
 import React,{ Component } from 'react'
-import { View,Text,ActivityIndicator,StyleSheet } from 'react-native'
+import { 
+    View,
+    Text, 
+    ActivityIndicator, 
+    StyleSheet, 
+    StatusBar 
+} from 'react-native'
 import { Input,Icon,Button } from 'react-native-elements'
-import StatusBarHeader from '../Components/statusBarHeader'
 import NavigationPropType from '../customTypes/navigationPropType'
 
 interface Props{
@@ -225,6 +230,7 @@ export default class AuthFormScreen extends Component<Props,State>{
     renderAuthForm = () =>{
         return(
             <View style={styles.formContainer}>
+                <StatusBar barStyle='dark-content'/>
                 <Text style={styles.headerText}>{this.state.login? "Login" : "Register"}</Text>
                 {this.loginOrRegister()}
                 <Button onPress={()=>{this.verifyCorrectFormFields()}}style={styles.button} title={this.handleButtonTitle()} />
@@ -236,7 +242,6 @@ export default class AuthFormScreen extends Component<Props,State>{
     render(){
         return(
             <>
-                <StatusBarHeader/>
                 <View style={styles.container}>
                     {this.state.loading ? <ActivityIndicator size="large" color="black" /> : this.renderAuthForm()}
                 </View>

@@ -7,46 +7,51 @@ import {
 } from 'react-native'
 import NavigationPropType from '../customTypes/navigationPropType'
 
-export interface RegionItemType{
-	name: String,
-	games: Array<String>
+interface PokedexItemObj{
+	name: string,
+    entries: number,
 }
 
 interface Props{
-	key: Number,
-  	region: RegionItemType,
+	key: number,
+  	pokedex: PokedexItemObj,
   	navigation: NavigationPropType
 }
 
-export default class RegionItem extends Component<Props>{
+export class PokedexItem extends Component<Props>{
 
-  	createGamesString = (gamesArray: Array<String>): String => {
-    	let string = "Games: "
+  	// createGamesString = (gamesArray: Array<String>): String => {
+    // 	let string = "Games: "
 
-  		for(let i = 0;i < gamesArray.length;i++){
-    		if(i == gamesArray.length -1 ){ 
-        		string += `${gamesArray[i]}`
-      		}
-      		else{
-        		string += `${gamesArray[i]}, `
-      		}
-   		}
-    	return string
-  	}
+  	// 	for(let i = 0;i < gamesArray.length;i++){
+    // 		if(i == gamesArray.length -1 ){ 
+    //     		string += `${gamesArray[i]}`
+    //   		}
+    //   		else{
+    //     		string += `${gamesArray[i]}, `
+    //   		}
+   	// 	}
+    // 	return string
+      // }
+      
+    // constructor(props: any){
+    //     super(props)
+    // }
 
   	// Stack navigator likes to pass params instead of props, they essentially work the same way 
 	handleItemPress = (event: Object): void => {
-	    	this.props.navigation.navigate("RegionDetail",{
-		  		name: this.props.region.name
-	  	})
+	    // 	this.props.navigation.navigate("RegionDetail",{
+		//   		name: this.props.pokedex.name
+        // })
+        alert('normally would go to pokedex page')
   	}
 
   render(){
 	return(
     	<TouchableOpacity style={styles.rowContainer} onPress={(event)=>this.handleItemPress(event)}>
 			<View style={styles.rowText}>
-    			<Text style={styles.name}>{this.props.region.name}</Text>
-    			<Text style={styles.games}>{this.createGamesString(this.props.region.games)}</Text>
+    			<Text style={styles.name}>{this.props.pokedex.name}</Text>
+    			<Text style={styles.games}>Entries: {this.props.pokedex.entries}</Text>
     		</View>
     	</TouchableOpacity>
       )

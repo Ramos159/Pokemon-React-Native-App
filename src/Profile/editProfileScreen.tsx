@@ -1,9 +1,11 @@
 import React,{Component} from 'react'
 import {
     SafeAreaView,
-    Text
+    Text,
+    StatusBar
 } from 'react-native'
 import User from "../customInterfaces/user"
+import StatusBarHeader from '../Components/statusBarHeader'
 
 interface Props{
     user: User
@@ -27,9 +29,10 @@ export default class EditProfileScreen extends Component<Props,State>{
     
     render() {
         return (
-        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,backgroundColor:"white"}}>
-            <Text>Edit Profile Screen</Text>
-        </SafeAreaView>
+            <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,backgroundColor:"white"}}>
+                <StatusBar barStyle='dark-content'/>
+                <Text>Edit Profile Screen</Text>
+            </SafeAreaView>
         );
     }
 }

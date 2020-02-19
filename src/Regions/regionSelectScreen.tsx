@@ -40,14 +40,14 @@ export default class RegionSelectScreen extends Component<Props>{
 			name:"Kalos",
 			games:["X","Y"]
 		},
-		{
-			name:"Alola",
-			games:["Sun","Moon","Ultra Sun","Ultra Moon"]
-		},
-		{
-			name:"Galar",
-			games:["Sword","Shield"]
-		}
+		// {
+		// 	name:"Alola",
+		// 	games:["Sun","Moon","Ultra Sun","Ultra Moon"]
+		// },
+		// {
+		// 	name:"Galar",
+		// 	games:["Sword","Shield"]
+		// }
 	]
 
  	renderRegions = (regionsArray: Array<RegionObject>): Array<JSX.Element> => {
@@ -56,16 +56,12 @@ export default class RegionSelectScreen extends Component<Props>{
 	  
     render() {
       	return (
-			<>
-			<SafeAreaView style={{flex:0,backgroundColor:"white"}}/>
-			<StatusBar barStyle="dark-content"/>
-			<SafeAreaView style={{flex:1,backgroundColor:"white",}}>
+			<SafeAreaView style={{flex:1,backgroundColor:"white"}}>
 				<Text style={{fontWeight:"bold",fontSize:20,textAlign:"center",paddingTop:25,paddingBottom:25}}>Regions</Text>
         		<ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center',backgroundColor:'white'}}>
         	  		{this.renderRegions(this.regions)}
         		</ScrollView>
 			</SafeAreaView>
-		</>
       )
     }
   }

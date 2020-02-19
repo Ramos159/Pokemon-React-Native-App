@@ -27,8 +27,6 @@ export default class ProfileScreen extends Component<Props>{
 
   	render() {
   		return(		
-		<>	
-			<StatusBarHeader/>
 			<SafeAreaView style={{flex:1,backgroundColor:"white",}}>
 				<Text style={{fontWeight:"bold",fontSize:20,textAlign:"center",paddingTop:25,paddingBottom:25}}>Profile</Text>
         		<ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center',backgroundColor:'white'}}>
@@ -38,7 +36,6 @@ export default class ProfileScreen extends Component<Props>{
 				<Button title="Edit Profile" onPress={(events)=>{this.props.navigation.navigate('Edit')}}/>
         		</ScrollView>
 			</SafeAreaView>
-		</>
   	  	)
   	}
 }
