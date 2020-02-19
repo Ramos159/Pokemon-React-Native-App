@@ -5,7 +5,7 @@ Soon to come features:
 -Information on All Regions  
 -Information about Specific Pokedexs  
 -Profile creation and customization, favoriting regions and pokemon  
--proper user authetitcation 
+-proper user authentication 
 
 Eventually when frontend is stubbed out, ill be building a backend in python for all data.  
 
