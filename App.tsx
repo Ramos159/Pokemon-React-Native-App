@@ -1,8 +1,8 @@
-import React,{Component} from 'react'
+import React from 'react'
 import AppContainer  from './src/app/appContainer'
+import { NavigationContainer } from '@react-navigation/native'
+import AppTab from './src/app/appTab'
 
-export default class App extends Component{
-  render(){
+export default function App() {
     return <AppContainer/>
-  }
 }

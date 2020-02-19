@@ -1,14 +1,20 @@
-import {createStackNavigator} from 'react-navigation-stack'
+import React from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
 import ProfileScreen from './profileScreen'
 import EditProfileScreen  from './editProfileScreen'
 import AuthFormScreen from './authFormScreen'
-import SettingsDrawer from '../Components/settingsDrawer'
 
-const ProfileStackNavigator = createStackNavigator({
-    Profile: ProfileScreen,
-    Edit: EditProfileScreen,
-    Auth: AuthFormScreen,
-    // Settings: SettingsDrawer
-},{initialRouteName:"Auth",headerMode:"none",})
+const Stack = createStackNavigator()
 
-export default ProfileStackNavigator
+export default function ProfileStackNavigator() {
+    return(
+        <Stack.Navigator
+            initialRouteName="AuthForm"
+            headerMode="none"
+        >
+            <Stack.Screen name="AuthForm" component={AuthFormScreen} />
+            <Stack.Screen name="Profile" component={ProfileScreen} />
+            <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+        </Stack.Navigator>
+    )
+}
