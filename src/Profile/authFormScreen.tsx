@@ -288,7 +288,7 @@ export default class AuthFormScreen extends Component<Props,State>{
                         />
                     </TouchableOpacity>
                 </View>
-                {this.state.loading ? <ActivityIndicator size="large" color="black" /> : this.renderAuthForm()}
+                {this.state.loading ? <ActivityIndicator style={styles.formContainer} size="large" color="black" /> : this.renderAuthForm()}
             </SafeAreaView>
         )
     }
@@ -300,7 +300,8 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor:'white',
         alignItems:'center',
-        flexDirection:'column'
+        flexDirection:'column',
+        justifyContent:'center'
     },
     formContainer:{
         flex:1,

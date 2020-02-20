@@ -2,9 +2,12 @@ import RegionObject from '../customInterfaces/regionObject'
 import { StackNavigationProp } from '@react-navigation/stack'
 
 type RegionStackParamList = {
-    RegionSelect:{
-        regions: Array<RegionObject>
-    },
+    RegionSelect:undefined
+    // think we'll just have them fetch regions when i start doing back end
+    // {
+    //     regions: Array<RegionObject>
+    // }
+    ,
     RegionDetail:{
         region:RegionObject
     }
