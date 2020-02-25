@@ -5,6 +5,7 @@ import {
 	Text,
 	Button, 
 	StyleSheet,
+	Modal
 } from 'react-native'
 import { CompositeNavigationProp } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';

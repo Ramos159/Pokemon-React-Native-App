@@ -7,7 +7,7 @@ type ProfileStackParamList = {
     AuthForm:undefined,
     EditProfile:{
         user: UserInterface
-    }
+    },
 }
 
 export default ProfileStackParamList

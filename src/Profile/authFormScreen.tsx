@@ -6,7 +6,8 @@ import {
     ActivityIndicator, 
     StyleSheet, 
     StatusBar,
-    TouchableOpacity
+    TouchableOpacity,
+    Modal
 } from 'react-native'
 import { 
     Input,
@@ -34,7 +35,8 @@ type State = {
     password: string,
     email: string,
     login: boolean,
-    loading: boolean
+    loading: boolean,
+    modalVisible: boolean
 }
 
 export default class AuthFormScreen extends Component<Props,State>{
@@ -44,7 +46,8 @@ export default class AuthFormScreen extends Component<Props,State>{
         password: "",
         email: "",
         login: true,
-        loading: false
+        loading: false,
+        modalVisible:false
     }
 
     // form inputs dont have something like a name attribute in regular html so seperate form change functions will have to do for now
@@ -195,7 +198,7 @@ export default class AuthFormScreen extends Component<Props,State>{
         })
     }
 
-    handleRegister = () => {
+    handleRegister = ():null | void => {
         // basic mock validations just for now
         // return null to exit function
         if(this.state.username === "edwin"){
@@ -228,7 +231,7 @@ export default class AuthFormScreen extends Component<Props,State>{
         })  
     }
 
-    verifyCorrectFormFields = () => {
+    verifyCorrectFormFields = ():Function | null=> {
 
         if(this.state.username === ""){
             alert("Username can not be empty!")
@@ -250,12 +253,17 @@ export default class AuthFormScreen extends Component<Props,State>{
 
     }
 
+    setModalVisible = (setting: boolean): void => {
+        this.setState({
+            modalVisible: setting
+        })
+    }
+
     renderAuthForm = () => {
         return(
-            <View 
-                style={styles.formContainer}>
-                <Text 
-                    style={styles.headerText}> {this.state.login? "Login" : "Register"}
+            <View style={styles.formContainer}>
+                <Text style={styles.headerText}> 
+                    {this.state.login? "Login" : "Register"}
                 </Text>
                 {this.loginOrRegister()}
                 <Button 
@@ -271,20 +279,35 @@ export default class AuthFormScreen extends Component<Props,State>{
     }
 
     handleSettingsPress = () => {
-        alert('drawer tab soon')
+        this.setModalVisible(true)
+    }
+
+    //this is the modal when you press on the settings button
+    renderModal = () => {
+        return <Modal
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.modalVisible}
+                    // onRequestClose={() => {Alert.alert('Modal has been closed.');}}
+                >
+                    <SafeAreaView style={{marginTop:50}}>
+                    <Text style={{marginLeft:15,fontSize:18, textAlign:"left"}}>App Version: Development Stage</Text>
+                    <Text style={{marginLeft:15,fontSize:18, textAlign:"left"}}>Author: Edwin Ramos</Text>
+                    <Text style={{marginLeft:15,fontSize:18, textAlign:"left"}}>Built with React Native and Expo</Text>
+                        <Button style={styles.button}title={"close"} onPress={() => {this.setModalVisible(false)}}/>
+                    </SafeAreaView>
+                </Modal>
     }
 
     render(){
         return(
-            <SafeAreaView 
-                style={styles.container}>
-                <StatusBar 
-                    barStyle='dark-content'
-                />
+            <SafeAreaView style={styles.container}>
+                <StatusBar barStyle='dark-content'/>
                 <View>
+                    {this.renderModal()}
                     <TouchableOpacity style={{position:'absolute',left:130}} >
-                        <Icon
-                            name='settings'
+                    <Icon
+                            name='info'
                             type='feather'
                             onPress={()=>{this.handleSettingsPress()}}
                         />
@@ -316,7 +339,8 @@ const styles = StyleSheet.create({
     button:{
         width:200,
         paddingTop:20,
-        paddingBottom:20
+        paddingBottom:20,
+        alignSelf:'center'
     },
     headerText:{
         fontWeight:"bold",

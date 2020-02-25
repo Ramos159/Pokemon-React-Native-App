@@ -1,5 +1,5 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import AboutPage from '../Settings/aboutPage'
+import AboutPage from './aboutPage'
 
 const Drawer = createDrawerNavigator();
 
