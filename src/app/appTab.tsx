@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons as Icon } from '@expo/vector-icons'
 import RegionStackNavigator from '../Regions/regionStackNavigator'
@@ -8,13 +8,14 @@ import RootTabParamList from '../customTypes/rootTabParamlist'
 
 const Tab = createBottomTabNavigator<RootTabParamList>()
 // this is the main tab we see on the bottom of the app 
-export default function AppTab() {
-    return(
+export default function AppTab(){
+    return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
+                // this returns all the icons images in the tab
                 tabBarIcon: ({ color, size, }) => {
                     let iconName: string
-                    
+                
                     if(route.name === 'Regions'){
                         iconName = 'ios-map'
                     }
@@ -24,16 +25,13 @@ export default function AppTab() {
                     if(route.name === 'Profile'){
                         iconName = 'ios-person'
                     }
-
                     return <Icon name={iconName} size={size} color={color} />;
                 },
-            }
-        )}
-          tabBarOptions={{
-            activeTintColor: 'blue',
-            inactiveTintColor: 'gray',
-          }}
-        >
+            })}
+            tabBarOptions={{
+                activeTintColor: 'blue',
+                inactiveTintColor: 'gray',
+            }}>
             <Tab.Screen name="Regions" component={RegionStackNavigator}/>
             <Tab.Screen name="Pokedexs" component={PokedexSelectScreen}/>
             <Tab.Screen name="Profile" component={ProfileStackNavigator}/>

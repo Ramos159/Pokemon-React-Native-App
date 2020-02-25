@@ -6,7 +6,6 @@ import AuthFormScreen from './authFormScreen'
 import ProfileStackParamList from '../customTypes/profileStackParamList'
 import RootTabParamList from '../customTypes/rootTabParamList'
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
-import SettingsDrawer from '../Settings/settingsDrawer'
 
 // creates stacknav checking for proper params against ProfileParamList
 const Stack = createStackNavigator<ProfileStackParamList>()
@@ -16,12 +15,24 @@ type Props = {
     navigation:BottomTabNavigationProp<RootTabParamList,"Profile">
 }
 
-export default class  ProfileStackNavigator extends Component<Props>{
-    render(){
+interface State{
+    user:Object
+}
+
+export default class  ProfileStackNavigator extends Component<Props,State>{
+
+    state = {
+        user:null
+    }
+
+    async render(){
         return(
             <Stack.Navigator
-            initialRouteName="AuthForm"
+            initialRouteName={"Profile"}
             headerMode="none"
+            screenOptions={{
+                gestureEnabled:false
+            }}
             >
                 <Stack.Screen name="AuthForm" component={AuthFormScreen} />
                 <Stack.Screen name="Profile" component={ProfileScreen} />

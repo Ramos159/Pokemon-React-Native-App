@@ -7,7 +7,7 @@ import {
     StyleSheet, 
     StatusBar,
     TouchableOpacity,
-    Modal
+    AsyncStorage
 } from 'react-native'
 import { 
     Input,
@@ -18,6 +18,7 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { StackNavigationProp } from '@react-navigation/stack';
 import ProfileStackParamList from '../customTypes/profileStackParamList'
 import RootTabParamList from '../customTypes/rootTabParamlist'
+import InformationModal  from '../Components/informationModal';
 
 // we use compositenavprop to combine both props type
 type AuthFormScreenNavigationProp = CompositeNavigationProp<
@@ -180,21 +181,35 @@ export default class AuthFormScreen extends Component<Props,State>{
 
         this.setState({
             loading:true
-        },()=>{
+        },async()=>{
+            const userObject = {
+                username: this.state.username,
+                password: this.state.password,
+                userID:1
+            }
             // simulating a log-in experience here
-            setTimeout(()=>{
-                this.props.navigation.push("Profile",{
-                    // mimic user object
-                    user:{
-                        username: this.state.username,
-                        password: this.state.password,
-                        userID:1
-                    }
-                })
+            // setTimeout(()=>{
+            //     this.props.navigation.push("Profile",{
+            //         // mimic user object
+            //         user:{
+            //             username: this.state.username,
+            //             password: this.state.password,
+            //             userID:1
+            //         }
+            //     })
+            //     this.setState({
+            //         loading:false
+            //     })
+            // },3000)
+
+            // await let them store user then setState and send them on their way to profile
+            await AsyncStorage.setItem("user",JSON.stringify(userObject),()=>{
                 this.setState({
                     loading:false
+                },()=>{
+                    this.props.navigation.push("Profile",{user:userObject})
                 })
-            },3000)
+            })
         })
     }
 
@@ -212,22 +227,37 @@ export default class AuthFormScreen extends Component<Props,State>{
 
         this.setState({
             loading:true
-        },()=>{
+        },async()=>{
+            const userObject = {
+                username: this.state.username,
+                password: this.state.password,
+                email:this.state.email,
+                userID:1
+            }
             // simulating a log-in experience here
-            setTimeout(()=>{
-                this.props.navigation.push("Profile",{
-                    // mimic user object
-                    user:{
-                        username: this.state.username,
-                        password: this.state.password,
-                        userID:1,
-                        email: this.state.email
-                    }
-                })
+
+            // setTimeout(()=>{
+            //     this.props.navigation.push("Profile",{
+            //         // mimic user object
+            //         user:{
+            //             username: this.state.username,
+            //             password: this.state.password,
+            //             userID:1,
+            //             email: this.state.email
+            //         }
+            //     })
+            //     this.setState({
+            //         loading:false
+            //     })
+            // },3000)
+
+            await AsyncStorage.setItem("user",JSON.stringify(userObject),()=>{
                 this.setState({
                     loading:false
+                },()=>{
+                    this.props.navigation.push("Profile",{user:userObject})
                 })
-            },3000)
+            })
         })  
     }
 
@@ -282,29 +312,37 @@ export default class AuthFormScreen extends Component<Props,State>{
         this.setModalVisible(true)
     }
 
-    //this is the modal when you press on the settings button
-    renderModal = () => {
-        return <Modal
-                    animationType="slide"
-                    transparent={false}
-                    visible={this.state.modalVisible}
-                    // onRequestClose={() => {Alert.alert('Modal has been closed.');}}
-                >
-                    <SafeAreaView style={{marginTop:50}}>
-                    <Text style={{marginLeft:15,fontSize:18, textAlign:"left"}}>App Version: Development Stage</Text>
-                    <Text style={{marginLeft:15,fontSize:18, textAlign:"left"}}>Author: Edwin Ramos</Text>
-                    <Text style={{marginLeft:15,fontSize:18, textAlign:"left"}}>Built with React Native and Expo</Text>
-                        <Button style={styles.button}title={"close"} onPress={() => {this.setModalVisible(false)}}/>
-                    </SafeAreaView>
-                </Modal>
-    }
+    // handleExit = () => {
+    //     this.setState({
+    //         modalVisible:false
+    //     },()=>{
+    //         this.props.navigation.jumpTo('Pokedexs')
+    //     })
+    // }
+
+    // this is the modal when you press on the settings button
+    // renderModal = () => {
+    //     return <Modal
+    //                 animationType="slide"
+    //                 transparent={false}
+    //                 visible={this.state.modalVisible}
+    //                 // onRequestClose={() => {Alert.alert('Modal has been closed.');}}
+    //             >
+    //                 <SafeAreaView style={{marginTop:50}}>
+    //                 <Text style={{marginLeft:15,fontSize:18, textAlign:"left"}}>App Version: Development Stage</Text>
+    //                 <Text style={{marginLeft:15,fontSize:18, textAlign:"left", marginBottom:20}}>Author: Edwin Ramos</Text>
+    //                 <Text style={{fontSize:15, textAlign:"center"}}>Built with React Native, Expo and Typescript</Text>
+    //                     <Button style={styles.button}title={"close"} onPress={() => {this.setModalVisible(false)}}/>
+    //                 </SafeAreaView>
+    //             </Modal>
+    // }
 
     render(){
         return(
             <SafeAreaView style={styles.container}>
                 <StatusBar barStyle='dark-content'/>
                 <View>
-                    {this.renderModal()}
+                    <InformationModal visible={this.state.modalVisible} changeVisibility={this.setModalVisible}/>
                     <TouchableOpacity style={{position:'absolute',left:130}} >
                     <Icon
                             name='info'
