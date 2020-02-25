@@ -3,7 +3,7 @@ import {
   	ScrollView,
   	Text,
 	SafeAreaView,
-	StatusBar
+	StatusBar,
 } from 'react-native'
 import RegionItem from './regionItem'
 import RegionObject from '../customInterfaces/regionObject'
@@ -13,7 +13,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import RegionStackParamList from '../customTypes/RegionStackParamList'
 import RootTabParamList from '../customTypes/rootTabParamlist'
 
-// we use compositenavprop to combine both props type
+// we use compositenavprop to combine both props type from bottom nav and stack nav
 type RegionSelectScreenNavigationProp = CompositeNavigationProp<
 BottomTabNavigationProp<RootTabParamList,'Regions'>,
 StackNavigationProp<RegionStackParamList,'RegionSelect'>
@@ -32,6 +32,7 @@ export default class RegionSelectScreen extends Component<Props>{
     render() {
       	return (
 			<SafeAreaView style={{flex:1,backgroundColor:"white"}}>
+				<StatusBar barStyle="dark-content"/>
 				<Text style={{fontWeight:"bold",fontSize:20,textAlign:"center",paddingTop:25,paddingBottom:25}}>Regions</Text>
         		<ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center',backgroundColor:'white'}}>
         	  		{this.renderRegions(regions)}
@@ -66,7 +67,10 @@ const regions = [
   {
       name:"Kalos",
       games:["X","Y"]
-  },
+  }
+  
+  // these regions are on the pokemon api yet for some reason
+
   // {
   // 	name:"Alola",
   // 	games:["Sun","Moon","Ultra Sun","Ultra Moon"]

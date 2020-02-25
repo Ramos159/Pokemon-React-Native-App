@@ -7,7 +7,7 @@ import ProfileStackNavigator from '../Profile/profileStackNavigator'
 import RootTabParamList from '../customTypes/rootTabParamlist'
 
 const Tab = createBottomTabNavigator<RootTabParamList>()
-
+// this is the main tab we see on the bottom of the app 
 export default function AppTab() {
     return(
         <Tab.Navigator

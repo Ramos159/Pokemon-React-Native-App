@@ -8,7 +8,10 @@ import {
     StatusBar,
     TouchableOpacity
 } from 'react-native'
-import { Input,Icon,Button } from 'react-native-elements'
+import { 
+    Input,
+    Icon,
+    Button } from 'react-native-elements'
 import { CompositeNavigationProp } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -45,7 +48,6 @@ export default class AuthFormScreen extends Component<Props,State>{
     }
 
     // form inputs dont have something like a name attribute in regular html so seperate form change functions will have to do for now
-
     handleUsernameChange = (event): void => {
 
         const text = event.nativeEvent.text
