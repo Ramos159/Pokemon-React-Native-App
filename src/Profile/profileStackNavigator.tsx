@@ -15,20 +15,16 @@ type Props = {
     navigation:BottomTabNavigationProp<RootTabParamList,"Profile">
 }
 
-interface State{
-    user:Object
-}
-
-export default class  ProfileStackNavigator extends Component<Props,State>{
+export default class  ProfileStackNavigator extends Component<Props>{
 
     state = {
         user:null
     }
 
-    async render(){
+    render(){
         return(
             <Stack.Navigator
-            initialRouteName={"Profile"}
+            initialRouteName={"AuthForm"}
             headerMode="none"
             screenOptions={{
                 gestureEnabled:false

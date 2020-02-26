@@ -7,7 +7,6 @@ import {
     StyleSheet, 
     StatusBar,
     TouchableOpacity,
-    AsyncStorage
 } from 'react-native'
 import { 
     Input,
@@ -48,7 +47,7 @@ export default class AuthFormScreen extends Component<Props,State>{
         email: "",
         login: true,
         loading: false,
-        modalVisible:false
+        modalVisible:true
     }
 
     // form inputs dont have something like a name attribute in regular html so seperate form change functions will have to do for now
@@ -168,7 +167,6 @@ export default class AuthFormScreen extends Component<Props,State>{
     }
 
     handleLogin = () => {
-        // basic mock validations just for now
         // return null to exit function
         if(this.state.username !== "edwin"){
             alert('wrong username')
@@ -181,40 +179,28 @@ export default class AuthFormScreen extends Component<Props,State>{
 
         this.setState({
             loading:true
-        },async()=>{
-            const userObject = {
-                username: this.state.username,
-                password: this.state.password,
-                userID:1
-            }
+        },()=>{
             // simulating a log-in experience here
-            // setTimeout(()=>{
-            //     this.props.navigation.push("Profile",{
-            //         // mimic user object
-            //         user:{
-            //             username: this.state.username,
-            //             password: this.state.password,
-            //             userID:1
-            //         }
-            //     })
-            //     this.setState({
-            //         loading:false
-            //     })
-            // },3000)
-
-            // await let them store user then setState and send them on their way to profile
-            await AsyncStorage.setItem("user",JSON.stringify(userObject),()=>{
+            setTimeout(()=>{
+                this.props.navigation.push("Profile",{
+                    // mimic user object
+                    user:{
+                        username: this.state.username,
+                        password: this.state.password,
+                        userID:1
+                    }
+                })
+                // maybe dont need this below
                 this.setState({
                     loading:false
-                },()=>{
-                    this.props.navigation.push("Profile",{user:userObject})
                 })
-            })
+            },3000)
         })
     }
 
+     // basic mock validations just for now
     handleRegister = ():null | void => {
-        // basic mock validations just for now
+
         // return null to exit function
         if(this.state.username === "edwin"){
             alert('username is already taken')
@@ -227,7 +213,7 @@ export default class AuthFormScreen extends Component<Props,State>{
 
         this.setState({
             loading:true
-        },async()=>{
+        },()=>{
             const userObject = {
                 username: this.state.username,
                 password: this.state.password,
@@ -236,33 +222,26 @@ export default class AuthFormScreen extends Component<Props,State>{
             }
             // simulating a log-in experience here
 
-            // setTimeout(()=>{
-            //     this.props.navigation.push("Profile",{
-            //         // mimic user object
-            //         user:{
-            //             username: this.state.username,
-            //             password: this.state.password,
-            //             userID:1,
-            //             email: this.state.email
-            //         }
-            //     })
-            //     this.setState({
-            //         loading:false
-            //     })
-            // },3000)
-
-            await AsyncStorage.setItem("user",JSON.stringify(userObject),()=>{
+            setTimeout(()=>{
+                this.props.navigation.push("Profile",{
+                    // mimic user object
+                    user:{
+                        username: this.state.username,
+                        password: this.state.password,
+                        userID:1,
+                        email: this.state.email
+                    }
+                })
                 this.setState({
                     loading:false
-                },()=>{
-                    this.props.navigation.push("Profile",{user:userObject})
                 })
-            })
+            },3000)
         })  
     }
 
     verifyCorrectFormFields = ():Function | null=> {
 
+        // return null to exit function
         if(this.state.username === ""){
             alert("Username can not be empty!")
             return null
@@ -276,6 +255,7 @@ export default class AuthFormScreen extends Component<Props,State>{
         if(!this.state.login){
             if(this.state.email === ""){
                 alert("Email can not be empty")
+                return null
             }
         }
 
@@ -286,7 +266,14 @@ export default class AuthFormScreen extends Component<Props,State>{
     setModalVisible = (setting: boolean): void => {
         this.setState({
             modalVisible: setting
-        })
+        }
+        // USE THIS GOBACK FUNCTION LATER WHEN WE MAKE AUTHFORM A MODAL COMPONENT
+
+        // ,()=>{
+        //     if(setting === false){
+        //         this.props.navigation.goBack()
+        //     }}
+        )
     }
 
     renderAuthForm = () => {
@@ -345,9 +332,9 @@ export default class AuthFormScreen extends Component<Props,State>{
                     <InformationModal visible={this.state.modalVisible} changeVisibility={this.setModalVisible}/>
                     <TouchableOpacity style={{position:'absolute',left:130}} >
                     <Icon
-                            name='info'
-                            type='feather'
-                            onPress={()=>{this.handleSettingsPress()}}
+                        name='info'
+                        type='feather'
+                        onPress={()=>{this.handleSettingsPress()}}
                         />
                     </TouchableOpacity>
                 </View>
