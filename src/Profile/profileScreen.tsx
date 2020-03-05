@@ -13,8 +13,8 @@ import ProfileStackParamList from '../customTypes/profileStackParamList'
 import RootTabParamList from '../customTypes/rootTabParamlist'
 
 type ProfileScreenNavigationProp = CompositeNavigationProp<
-BottomTabNavigationProp<RootTabParamList,'Profile'>,
-StackNavigationProp<ProfileStackParamList,'AuthForm'>
+	BottomTabNavigationProp<RootTabParamList,'Profile'>,
+	StackNavigationProp<ProfileStackParamList,'AuthForm'>
 >
 
 type ProfileScreenRouteProp = RouteProp<ProfileStackParamList, 'Profile'>;

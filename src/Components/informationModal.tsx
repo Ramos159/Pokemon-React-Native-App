@@ -21,12 +21,13 @@ export default class InformationModal extends Component<Props>{
                 animationType="slide"
                 transparent={false}
                 visible={this.props.visible}
+                // may be of use later below
                 // onRequestClose={() => {Alert.alert('Modal has been closed.');}}
                 >
                     <SafeAreaView style={{marginTop:50}}>
-                    <Text style={{marginLeft:15,fontSize:18, textAlign:"left"}}>App Version: Development Stage</Text>
-                    <Text style={{marginLeft:15,fontSize:18, textAlign:"left", marginBottom:20}}>Author: Edwin Ramos</Text>
-                    <Text style={{fontSize:15, textAlign:"center"}}>Built with React Native, Expo and Typescript</Text>
+                        <Text style={{marginLeft:15,fontSize:18, textAlign:"left"}}>App Version: Development Stage</Text>
+                        <Text style={{marginLeft:15,fontSize:18, textAlign:"left", marginBottom:20}}>Author: Edwin Ramos</Text>
+                        <Text style={{fontSize:15, textAlign:"center"}}>Built with React Native, Expo and Typescript</Text>
                         <Button style={styles.button}title={"close"} onPress={() => {this.props.changeVisibility(false)}}/>
                     </SafeAreaView>
                 </Modal>

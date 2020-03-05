@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons as Icon } from '@expo/vector-icons'
 import RegionStackNavigator from '../Regions/regionStackNavigator'
-import PokedexSelectScreen from '../Pokedexs/pokedexSelectScreen'
+import PokedexStackNavigator from '../Pokedexs/pokedexStackNav'
 import ProfileStackNavigator from '../Profile/profileStackNavigator'
 import RootTabParamList from '../customTypes/rootTabParamlist'
 
@@ -33,7 +33,7 @@ export default function AppTab(){
                 inactiveTintColor: 'gray',
             }}>
             <Tab.Screen name="Regions" component={RegionStackNavigator}/>
-            <Tab.Screen name="Pokedexs" component={PokedexSelectScreen}/>
+            <Tab.Screen name="Pokedexs" component={PokedexStackNavigator}/>
             <Tab.Screen name="Profile" component={ProfileStackNavigator}/>
         </Tab.Navigator>
     )

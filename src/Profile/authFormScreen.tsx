@@ -47,7 +47,7 @@ export default class AuthFormScreen extends Component<Props,State>{
         email: "",
         login: true,
         loading: false,
-        modalVisible:true
+        modalVisible:false
     }
 
     // form inputs dont have something like a name attribute in regular html so seperate form change functions will have to do for now
@@ -61,7 +61,7 @@ export default class AuthFormScreen extends Component<Props,State>{
     }
 
     handlePasswordChange = (event):void => {
-
+        console.log(typeof(event))
         const text = event.nativeEvent.text
 
         this.setState({
@@ -298,31 +298,6 @@ export default class AuthFormScreen extends Component<Props,State>{
     handleSettingsPress = () => {
         this.setModalVisible(true)
     }
-
-    // handleExit = () => {
-    //     this.setState({
-    //         modalVisible:false
-    //     },()=>{
-    //         this.props.navigation.jumpTo('Pokedexs')
-    //     })
-    // }
-
-    // this is the modal when you press on the settings button
-    // renderModal = () => {
-    //     return <Modal
-    //                 animationType="slide"
-    //                 transparent={false}
-    //                 visible={this.state.modalVisible}
-    //                 // onRequestClose={() => {Alert.alert('Modal has been closed.');}}
-    //             >
-    //                 <SafeAreaView style={{marginTop:50}}>
-    //                 <Text style={{marginLeft:15,fontSize:18, textAlign:"left"}}>App Version: Development Stage</Text>
-    //                 <Text style={{marginLeft:15,fontSize:18, textAlign:"left", marginBottom:20}}>Author: Edwin Ramos</Text>
-    //                 <Text style={{fontSize:15, textAlign:"center"}}>Built with React Native, Expo and Typescript</Text>
-    //                     <Button style={styles.button}title={"close"} onPress={() => {this.setModalVisible(false)}}/>
-    //                 </SafeAreaView>
-    //             </Modal>
-    // }
 
     render(){
         return(

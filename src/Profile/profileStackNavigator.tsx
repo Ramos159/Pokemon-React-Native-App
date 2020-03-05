@@ -11,29 +11,23 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 const Stack = createStackNavigator<ProfileStackParamList>()
 
 // since this stack is child of a bottom tab, we should give it the bottom tab props
-type Props = {
-    navigation:BottomTabNavigationProp<RootTabParamList,"Profile">
-}
+// UPDATE: we dont need this prop anymore
+// type Props = {
+//     navigation:BottomTabNavigationProp<RootTabParamList,"Profile">
+// }
 
-export default class  ProfileStackNavigator extends Component<Props>{
-
-    state = {
-        user:null
-    }
-
-    render(){
-        return(
-            <Stack.Navigator
-            initialRouteName={"AuthForm"}
-            headerMode="none"
-            screenOptions={{
-                gestureEnabled:false
-            }}
-            >
-                <Stack.Screen name="AuthForm" component={AuthFormScreen} />
-                <Stack.Screen name="Profile" component={ProfileScreen} />
-                <Stack.Screen name="EditProfile" component={EditProfileScreen} />
-            </Stack.Navigator>
-        )
-    }
+export default function ProfileStackNavigator(){
+    return(
+        <Stack.Navigator
+        initialRouteName={"AuthForm"}
+        headerMode="none"
+        screenOptions={{
+            gestureEnabled:false
+        }}
+        >
+            <Stack.Screen name="AuthForm" component={AuthFormScreen} />
+            <Stack.Screen name="Profile" component={ProfileScreen} />
+            <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+        </Stack.Navigator>
+    )
 }

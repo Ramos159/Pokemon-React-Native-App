@@ -2,7 +2,6 @@ import React,{Component} from 'react'
 import { 
 	SafeAreaView, 
 	Text, 
-    StyleSheet,
     StatusBar
 } from 'react-native'
 import { CompositeNavigationProp } from '@react-navigation/native';

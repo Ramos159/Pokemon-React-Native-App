@@ -14,8 +14,8 @@ import RootTabParamList from '../customTypes/rootTabParamlist'
 
 // combine both prop types from tab and stack
 type ProfileScreenNavigationProp = CompositeNavigationProp<
-BottomTabNavigationProp<RootTabParamList,'Profile'>,
-StackNavigationProp<ProfileStackParamList,'EditProfile'>
+    BottomTabNavigationProp<RootTabParamList,'Profile'>,
+    StackNavigationProp<ProfileStackParamList,'EditProfile'>
 >
 
 // get proper route props for this screen
