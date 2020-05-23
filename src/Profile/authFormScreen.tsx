@@ -1,4 +1,4 @@
-import React,{ Component } from 'react'
+import React, { useState, useEffect } from 'react';
 import { 
     SafeAreaView,
     View,
@@ -7,85 +7,92 @@ import {
     StyleSheet, 
     StatusBar,
     TouchableOpacity,
-} from 'react-native'
+} from 'react-native';
 import { 
     Input,
     Icon,
-    Button } from 'react-native-elements'
+    Button } from 'react-native-elements';
 import { CompositeNavigationProp } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { StackNavigationProp } from '@react-navigation/stack';
 import ProfileStackParamList from '../customTypes/profileStackParamList'
-import RootTabParamList from '../customTypes/rootTabParamlist'
+import RootTabParamList from '../customTypes/rootTabParamlist';
 import InformationModal  from '../Components/informationModal';
+import usePrevious from '../CustomHooks/usePrevious';
 
 // we use compositenavprop to combine both props type
 type AuthFormScreenNavigationProp = CompositeNavigationProp<
 BottomTabNavigationProp<RootTabParamList,'Profile'>,
 StackNavigationProp<ProfileStackParamList,'AuthForm'>
->
+>;
 
 // this combines the bottomtabnav and stacknav props for type checking
 type Props = {
     navigation: AuthFormScreenNavigationProp
-}
+};
 
-type State = {
-    username: string,
-    password: string,
-    email: string,
-    login: boolean,
-    loading: boolean,
-    modalVisible: boolean
-}
+// maybe we dont need this state type with hooks? 
 
-export default class AuthFormScreen extends Component<Props,State>{
+// type State = {
+//     username: string,
+//     password: string,
+//     email: string,
+//     login: boolean,
+//     loading: boolean,
+//     modalVisible: boolean
 
-    state = {
-        username: "",
-        password: "",
-        email: "",
-        login: true,
-        loading: false,
-        modalVisible:false
-    }
+// }
 
-    // form inputs dont have something like a name attribute in regular html so seperate form change functions will have to do for now
-    handleUsernameChange = (event): void => {
+const AuthFormScreen: React.FunctionComponent<Props> = (props: Props) =>{
 
-        const text = event.nativeEvent.text
+    const [username,setUsername] = useState<string>('');
+    const [password,setPassword] = useState<string>('');
+    const [email,setEmail] = useState<string>('');
+    const [login,setLogin] = useState<boolean>(true);
+    const [loading,setLoading] = useState<boolean>(false);
+    const [modalVisible,setModalVisible] = useState<boolean>(false);
+    const prevLogin = usePrevious(login);
+    // if loading gets set to true use this effect
+    useEffect(()=>{
+        if(loading && login){
+            setTimeout(()=>{
+                props.navigation.push("Profile",{
+                    // mimic user object
+                    user:{
+                        username: username,
+                        password: password,
+                        userID:1
+                    }
+                });
+                setLoading(false);
+            },3000);
+        }
 
-        this.setState({
-            username:text
-        })
-    }
+        if(loading && !login){
+            setTimeout(()=>{
+                props.navigation.push("Profile",{
+                    // mimic user object
+                    user:{
+                        username: username,
+                        password: password,
+                        userID:1,
+                        email: email
+                    }
+                });
+                setLoading(false);
+            },3000);
+        }
+    },[loading]);
 
-    handlePasswordChange = (event):void => {
-        console.log(typeof(event))
-        const text = event.nativeEvent.text
 
-        this.setState({
-            password:text
-        })
-    }
 
-    handleEmailChange = (event):void => {
-
-        const text = event.nativeEvent.text
-
-        this.setState({
-            email:text
-        })
-    }
-
-    loginOrRegister = (): JSX.Element => {
+    const loginOrRegister = () => {
         // login form as a function called login
-        const login = () => {
-            return(
+        const login =
                 <>
                 <Input
                     placeholder='Username'
-                    onChange={(event)=>this.handleUsernameChange(event)}
+                    onChange={(event)=>setUsername(event.nativeEvent.text)}
                     leftIcon={
                         <Icon
                             name='user'
@@ -96,7 +103,7 @@ export default class AuthFormScreen extends Component<Props,State>{
                 <Input
                     placeholder='Password'
                     secureTextEntry={true}
-                    onChange={(event)=>this.handlePasswordChange(event)}
+                    onChange={(event)=>setPassword(event.nativeEvent.text)}
                     leftIcon={
                         <Icon
                             name='lock'
@@ -105,15 +112,13 @@ export default class AuthFormScreen extends Component<Props,State>{
                     }
                 />
             </>
-            )
-        }
+            
         // same as above but for register form
-        const register = () =>{
-            return(
+        const register = 
                 <>
                 <Input
                     placeholder='Username'
-                    onChange={(event)=>this.handleUsernameChange(event)}
+                    onChange={(event)=>setUsername(event.nativeEvent.text)}
                     leftIcon={
                         <Icon
                             name='user'
@@ -124,7 +129,7 @@ export default class AuthFormScreen extends Component<Props,State>{
                 <Input
                     placeholder='Password'
                     secureTextEntry={true}
-                    onChange={(event)=>this.handlePasswordChange(event)}
+                    onChange={(event)=>setPassword(event.nativeEvent.text)}
                     leftIcon={
                         <Icon
                             name='lock'
@@ -134,7 +139,7 @@ export default class AuthFormScreen extends Component<Props,State>{
                 />
                 <Input
                     placeholder='Email'
-                    onChange={(event)=>this.handleEmailChange(event)}
+                    onChange={(event)=>setEmail(event.nativeEvent.text)}
                     leftIcon={
                         <Icon
                             name='mail'
@@ -143,180 +148,129 @@ export default class AuthFormScreen extends Component<Props,State>{
                     }
                 />
             </>
-            )
-        }
-        return this.state.login ? login() : register()
+            
+        return login ? login : register;
     }
 
-    handleButtonTitle = ():string => {
-        return this.state.login ? "Log in" : "Register"
+    const handleButtonTitle = () => {
+        return login ? "Log in" : "Register";
     }
 
-    handleFormChange = ():void => {
+    const handleFormChange = () => {
         // change a bit of state to trigger rerender and show other form
-        this.setState((prevState)=>{
-            return{
-                login: !prevState.login
-            }
-        })
+        setLogin(!prevLogin);
     }
 
-    handleChangeFormText = (): string => {
+    const handleChangeFormText = () => {
         // change text depending on form thats present
-        return this.state.login ? "New User? Register here!" : "Have an Account? Log in here!"
+        return login ? "New User? Register here!" : "Have an Account? Log in here!";
     }
 
-    handleLogin = () => {
+    const handleLogin = () => {
         // return null to exit function
-        if(this.state.username !== "edwin"){
-            alert('wrong username')
-            return null
+        if(username !== "edwin"){
+            alert('wrong username');
+            return null;
         }
-        if(this.state.password !== 'ramos'){
-            alert("wrong password")
-            return null
+        if(password !== 'ramos'){
+            alert("wrong password");
+            return null;
         }
-
-        this.setState({
-            loading:true
-        },()=>{
-            // simulating a log-in experience here
-            setTimeout(()=>{
-                this.props.navigation.push("Profile",{
-                    // mimic user object
-                    user:{
-                        username: this.state.username,
-                        password: this.state.password,
-                        userID:1
-                    }
-                })
-                // maybe dont need this below
-                this.setState({
-                    loading:false
-                })
-            },3000)
-        })
+        setLoading(true);
     }
 
      // basic mock validations just for now
-    handleRegister = ():null | void => {
+    const handleRegister = () => {
 
         // return null to exit function
-        if(this.state.username === "edwin"){
-            alert('username is already taken')
-            return null
+        if(username === "edwin"){
+            alert('username is already taken');
+            return null;
         }
-        if(this.state.email === 'edwinramos269@gmail.com'){
-            alert('email is already taken!')
-            return null
+        if(email === 'edwinramos269@gmail.com'){
+            alert('email is already taken!');
+            return null;
         }
 
-        this.setState({
-            loading:true
-        },()=>{
-            const userObject = {
-                username: this.state.username,
-                password: this.state.password,
-                email:this.state.email,
-                userID:1
-            }
-            // simulating a log-in experience here
-
-            setTimeout(()=>{
-                this.props.navigation.push("Profile",{
-                    // mimic user object
-                    user:{
-                        username: this.state.username,
-                        password: this.state.password,
-                        userID:1,
-                        email: this.state.email
-                    }
-                })
-                this.setState({
-                    loading:false
-                })
-            },3000)
-        })  
+        setLoading(true);
     }
 
-    verifyCorrectFormFields = ():Function | null=> {
+    const verifyCorrectFormFields = () => {
 
         // return null to exit function
-        if(this.state.username === ""){
-            alert("Username can not be empty!")
-            return null
+        if(username === ""){
+            alert("Username can not be empty!");
+            return null;
         }
 
-        if(this.state.password === ""){
-            alert("Password can not be empty")
-            return null
+        if(password === ""){
+            alert("Password can not be empty");
+            return null;
         }
 
-        if(!this.state.login){
-            if(this.state.email === ""){
-                alert("Email can not be empty")
-                return null
+        if(!login){
+            if(email === ""){
+                alert("Email can not be empty");
+                return null;
             }
         }
 
-        this.state.login ? this.handleLogin() : this.handleRegister()
+        login ? handleLogin() : handleRegister();
 
     }
 
-    setModalVisible = (setting: boolean): void => {
-        this.setState({
-            modalVisible: setting
-        }
-        // USE THIS GOBACK FUNCTION LATER WHEN WE MAKE AUTHFORM A MODAL COMPONENT
+    // const setModalVisible = (setting: boolean) => {
+    //     this.setState({
+    //         modalVisible: setting
+    //     }
+    //     // USE THIS GOBACK FUNCTION LATER WHEN WE MAKE AUTHFORM A MODAL COMPONENT
 
-        // ,()=>{
-        //     if(setting === false){
-        //         this.props.navigation.goBack()
-        //     }}
-        )
-    }
+    //     // ,()=>{
+    //     //     if(setting === false){
+    //     //         this.props.navigation.goBack()
+    //     //     }}
+    //     )
+    // }
 
-    renderAuthForm = () => {
+    const renderAuthForm = () => {
         return(
             <View style={styles.formContainer}>
                 <Text style={styles.headerText}> 
-                    {this.state.login? "Login" : "Register"}
+                    {login ? "Login" : "Register"}
                 </Text>
-                {this.loginOrRegister()}
+                {loginOrRegister()}
                 <Button 
-                    onPress={()=>{this.verifyCorrectFormFields()}}
+                    onPress={()=>{verifyCorrectFormFields()}}
                     style={styles.button} 
-                    title={this.handleButtonTitle()} 
+                    title={handleButtonTitle()} 
                 />
-                <Text onPress={()=>{this.handleFormChange()}}>
-                    {this.handleChangeFormText()}
+                <Text onPress={()=>{handleFormChange()}}>
+                    {handleChangeFormText()}
                 </Text>
             </View>
         )
     }
 
-    handleSettingsPress = () => {
-        this.setModalVisible(true)
+    const handleSettingsPress = () => {
+        setModalVisible(true);
     }
 
-    render(){
-        return(
-            <SafeAreaView style={styles.container}>
-                <StatusBar barStyle='dark-content'/>
-                <View>
-                    <InformationModal visible={this.state.modalVisible} changeVisibility={this.setModalVisible}/>
-                    <TouchableOpacity style={{position:'absolute',left:130}} >
-                    <Icon
-                        name='info'
-                        type='feather'
-                        onPress={()=>{this.handleSettingsPress()}}
-                        />
-                    </TouchableOpacity>
-                </View>
-                {this.state.loading ? <ActivityIndicator style={styles.formContainer} size="large" color="black" /> : this.renderAuthForm()}
-            </SafeAreaView>
-        )
-    }
+    return(
+        <SafeAreaView style={styles.container}>
+            <StatusBar barStyle='dark-content'/>
+            <View>
+                <InformationModal visible={modalVisible} changeVisibility={setModalVisible}/>
+                <TouchableOpacity style={{position:'absolute',left:130}} >
+                <Icon
+                    name='info'
+                    type='feather'
+                    onPress={()=>{handleSettingsPress()}}
+                    />
+                </TouchableOpacity>
+            </View>
+            { loading ? <ActivityIndicator style={styles.formContainer} size="large" color="black" /> : renderAuthForm()}
+        </SafeAreaView>
+    );
 }
 
 //stylesheet
@@ -346,4 +300,6 @@ const styles = StyleSheet.create({
         fontWeight:"bold",
         fontSize:20
     }
-})
+});
+
+export default AuthFormScreen;
