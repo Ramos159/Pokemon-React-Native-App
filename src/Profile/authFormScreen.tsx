@@ -31,19 +31,18 @@ type Props = {
     navigation: AuthFormScreenNavigationProp
 };
 
-// maybe we dont need this state type with hooks? 
+// maybe we dont need this state type with hooks?
 
 // type State = {
-//     username: string,
-//     password: string,
-//     email: string,
-//     login: boolean,
-//     loading: boolean,
-//     modalVisible: boolean
-
+//     username: string;
+//     password: string;
+//     email: string;
+//     login: boolean;
+//     loading: boolean;
+//     modalVisible: boolean;
 // }
 
-const AuthFormScreen: React.FunctionComponent<Props> = (props: Props) =>{
+export const AuthFormScreen: React.FC<Props> = ({navigation}) => {
 
     const [username,setUsername] = useState<string>('');
     const [password,setPassword] = useState<string>('');
@@ -53,10 +52,10 @@ const AuthFormScreen: React.FunctionComponent<Props> = (props: Props) =>{
     const [modalVisible,setModalVisible] = useState<boolean>(false);
     const prevLogin = usePrevious(login);
     // if loading gets set to true use this effect
-    useEffect(()=>{
-        if(loading && login){
-            setTimeout(()=>{
-                props.navigation.push("Profile",{
+    useEffect(() => {
+        if(loading && login) {
+            setTimeout(() => {
+                navigation.push("Profile",{
                     // mimic user object
                     user:{
                         username: username,
@@ -70,7 +69,7 @@ const AuthFormScreen: React.FunctionComponent<Props> = (props: Props) =>{
 
         if(loading && !login){
             setTimeout(()=>{
-                props.navigation.push("Profile",{
+                navigation.push("Profile",{
                     // mimic user object
                     user:{
                         username: username,
@@ -86,7 +85,7 @@ const AuthFormScreen: React.FunctionComponent<Props> = (props: Props) =>{
 
 
 
-    const loginOrRegister = () => {
+    function loginOrRegister() {
         // login form as a function called login
         const login =
                 <>
@@ -152,21 +151,21 @@ const AuthFormScreen: React.FunctionComponent<Props> = (props: Props) =>{
         return login ? login : register;
     }
 
-    const handleButtonTitle = () => {
+    function handleButtonTitle() {
         return login ? "Log in" : "Register";
     }
 
-    const handleFormChange = () => {
+    function handleFormChange() {
         // change a bit of state to trigger rerender and show other form
         setLogin(!prevLogin);
     }
 
-    const handleChangeFormText = () => {
+    function handleChangeFormText() {
         // change text depending on form thats present
         return login ? "New User? Register here!" : "Have an Account? Log in here!";
     }
 
-    const handleLogin = () => {
+    function handleLogin() {
         // return null to exit function
         if(username !== "edwin"){
             alert('wrong username');
@@ -180,7 +179,7 @@ const AuthFormScreen: React.FunctionComponent<Props> = (props: Props) =>{
     }
 
      // basic mock validations just for now
-    const handleRegister = () => {
+    function handleRegister() {
 
         // return null to exit function
         if(username === "edwin"){
@@ -195,7 +194,7 @@ const AuthFormScreen: React.FunctionComponent<Props> = (props: Props) =>{
         setLoading(true);
     }
 
-    const verifyCorrectFormFields = () => {
+    function verifyCorrectFormFields() {
 
         // return null to exit function
         if(username === ""){
@@ -232,7 +231,7 @@ const AuthFormScreen: React.FunctionComponent<Props> = (props: Props) =>{
     //     )
     // }
 
-    const renderAuthForm = () => {
+    function renderAuthForm() {
         return(
             <View style={styles.formContainer}>
                 <Text style={styles.headerText}> 
@@ -240,18 +239,18 @@ const AuthFormScreen: React.FunctionComponent<Props> = (props: Props) =>{
                 </Text>
                 {loginOrRegister()}
                 <Button 
-                    onPress={()=>{verifyCorrectFormFields()}}
+                    onPress={verifyCorrectFormFields}
                     style={styles.button} 
                     title={handleButtonTitle()} 
                 />
-                <Text onPress={()=>{handleFormChange()}}>
+                <Text onPress={handleFormChange}>
                     {handleChangeFormText()}
                 </Text>
             </View>
         )
     }
 
-    const handleSettingsPress = () => {
+    function handleSettingsPress() {
         setModalVisible(true);
     }
 
@@ -264,7 +263,7 @@ const AuthFormScreen: React.FunctionComponent<Props> = (props: Props) =>{
                 <Icon
                     name='info'
                     type='feather'
-                    onPress={()=>{handleSettingsPress()}}
+                    onPress={handleSettingsPress}
                     />
                 </TouchableOpacity>
             </View>
@@ -301,5 +300,3 @@ const styles = StyleSheet.create({
         fontSize:20
     }
 });
-
-export default AuthFormScreen;
