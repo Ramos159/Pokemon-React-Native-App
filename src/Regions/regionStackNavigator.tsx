@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import RegionSelectScreen from './regionSelectScreen';
-import RegionDetailScreen from './regionDetailScreen';
+import { RegionSelectScreen } from './regionSelectScreen';
+import { RegionDetailScreen } from './regionDetailScreen';
 import { RegionStackParamList } from '../customTypes/regionStackParamList';
 // import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 // import RootTabParamList from '../customTypes/rootTabParamList'
@@ -16,7 +16,7 @@ const Stack = createStackNavigator<RegionStackParamList>();
 //     navigation:BottomTabNavigationProp<RootTabParamList,"Regions">
 // }
 
-export default function RegionStackNavigator(): ReactElement {
+export function RegionStackNavigator(): ReactElement {
   return (
     <Stack.Navigator
       initialRouteName="RegionSelect"

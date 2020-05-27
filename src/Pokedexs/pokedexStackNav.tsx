@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import PokedexSelectScreen from './pokedexSelectScreen';
+import { PokedexSelectScreen } from './pokedexSelectScreen';
 import { PokedexStackParamList } from '../customTypes/pokedexStackParamList';
 // import RootTabParamList from '../customTypes/rootTabParamList'
 // import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
@@ -16,7 +16,7 @@ const Stack = createStackNavigator<PokedexStackParamList>();
 //     navigation:BottomTabNavigationProp<RootTabParamList,"Pokedexs">
 // }
 
-export default function ProfileStackNavigator(): ReactElement {
+export function PokedexStackNavigator(): ReactElement {
   return (
     <Stack.Navigator
       initialRouteName="PokedexSelect"

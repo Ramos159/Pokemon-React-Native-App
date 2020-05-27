@@ -4,7 +4,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 
-export default function StatusBarHeader(): ReactElement {
+export function StatusBarHeader(): ReactElement {
   return (
     <>
       <SafeAreaView style={{ flex: 0, backgroundColor: 'white' }} />

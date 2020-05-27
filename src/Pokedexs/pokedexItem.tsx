@@ -67,7 +67,7 @@ type Props = {
   navigation: PokedexItemNavigationProp
 }
 
-export default function PokedexItem({ pokedex, navigation }: Props): ReactElement {
+export function PokedexItem({ pokedex, navigation }: Props): ReactElement {
   // createGamesString = (gamesArray: Array<String>): String => {
   //  let string = "Games: "
   //  for(let i = 0;i < gamesArray.length;i++){

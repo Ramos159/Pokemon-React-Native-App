@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function InformationModal({ visible, changeVisibility }: Props): ReactElement {
+export function InformationModal({ visible, changeVisibility }: Props): ReactElement {
   return (
     <Modal
       animationType="slide"

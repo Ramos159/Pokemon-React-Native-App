@@ -36,7 +36,7 @@ type Props = {
 }
 // will use navigation later
 // eslint-disable-next-line
-export default function RegionDetailScreen({ navigation,route }: Props) {
+export function RegionDetailScreen({ navigation,route }: Props) {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />

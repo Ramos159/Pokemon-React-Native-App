@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 });
 
 // eslint-disable-next-line
-export default function EditProfileScreen({navigation, route}:Props){
+export function EditProfileScreen({navigation, route}:Props){
   // we're going to use these hooks later, just dont want eslint to yell
   /* eslint-disable */
   const [newUsername,setNewUsername] = useState('');

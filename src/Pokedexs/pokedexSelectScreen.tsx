@@ -12,7 +12,7 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { PokedexStackParamList } from '../customTypes/pokedexStackParamList';
 import { RootTabParamList } from '../customTypes/rootTabParamlist';
-import PokedexItem from './pokedexItem';
+import { PokedexItem } from './pokedexItem';
 
 const styles = StyleSheet.create({
   text: {
@@ -42,7 +42,7 @@ type Props = {
   navigation: PokedexSelectNavigationProp
 }
 
-export default function PokedexSelectScreen(props: Props): ReactElement {
+export function PokedexSelectScreen(props: Props): ReactElement {
   const { navigation } = props;
   const pokedexes = [
     {

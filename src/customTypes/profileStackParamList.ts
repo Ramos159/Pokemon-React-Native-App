@@ -1,5 +1,4 @@
-// eslint-disable-next-line
-import UserInterface from '../customInterfaces/userInterface';
+import { UserInterface } from '../customInterfaces/userInterface';
 // param list for the profile stack nav
 export type ProfileStackParamList = {
     Profile:{

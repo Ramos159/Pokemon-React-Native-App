@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export default function usePrevious(value: boolean): boolean {
+export function usePrevious(value: boolean): boolean {
   const ref: React.MutableRefObject<boolean> = useRef();
 
   useEffect(() => {

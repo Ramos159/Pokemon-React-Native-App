@@ -9,7 +9,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { CompositeNavigationProp } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { RegionStackParamList } from '../customTypes/regionStackParamList';
-import RegionObject from '../customInterfaces/regionObject';
+import { RegionObject } from '../customInterfaces/regionObject';
 import { RootTabParamList } from '../customTypes/rootTabParamlist';
 
 const styles = StyleSheet.create({
@@ -64,7 +64,7 @@ type Props = {
   region: RegionObject,
 }
 
-export default function RegionItem({ navigation, region }:Props): ReactElement {
+export function RegionItem({ navigation, region }:Props): ReactElement {
   function createGamesString(gamesArray: Array<string>) {
     let string = 'Games: ';
     // eslint-disable-next-line no-plusplus

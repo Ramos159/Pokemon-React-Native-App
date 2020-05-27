@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function ProfileScreen({ navigation, route }: Props): ReactElement {
+export function ProfileScreen({ navigation, route }: Props): ReactElement {
   return (
     <SafeAreaView style={styles.mainContainer}>
       <Text style={styles.headerText}>Profile</Text>

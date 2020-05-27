@@ -19,8 +19,8 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ProfileStackParamList } from '../customTypes/profileStackParamList';
 import { RootTabParamList } from '../customTypes/rootTabParamlist';
-import InformationModal from '../Components/informationModal';
-import usePrevious from '../CustomHooks/usePrevious';
+import { InformationModal } from '../Components/informationModal';
+import { usePrevious } from '../CustomHooks/usePrevious';
 
 // we use compositenavprop to combine both props type
 type AuthFormScreenNavigationProp = CompositeNavigationProp<
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 //     modalVisible: boolean;
 // }
 
-export default function AuthFormScreen({ navigation }:Props): ReactElement {
+export function AuthFormScreen({ navigation }:Props): ReactElement {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');

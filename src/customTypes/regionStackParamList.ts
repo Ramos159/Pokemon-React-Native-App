@@ -1,6 +1,4 @@
-// eslint throws unused var but its clearly used
-// eslint-disable-next-line
-import RegionObject from '../customInterfaces/regionObject'
+import { RegionObject } from '../customInterfaces/regionObject'
 // param list for the region stacknav
 export type RegionStackParamList = {
   RegionSelect: undefined

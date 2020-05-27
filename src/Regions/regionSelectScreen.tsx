@@ -9,8 +9,8 @@ import {
 import { CompositeNavigationProp } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { StackNavigationProp } from '@react-navigation/stack';
-import RegionObject from '../customInterfaces/regionObject';
-import RegionItem from './regionItem';
+// import { RegionObject } from '../customInterfaces/regionObject';
+import { RegionItem } from './regionItem';
 import { RegionStackParamList } from '../customTypes/RegionStackParamList';
 import { RootTabParamList } from '../customTypes/rootTabParamlist';
 
@@ -76,7 +76,7 @@ interface Props{
   navigation: RegionSelectScreenNavigationProp,
 }
 
-export default function RegionSelectScreen({ navigation }: Props): ReactElement {
+export function RegionSelectScreen({ navigation }: Props): ReactElement {
   function renderRegions(regionsArray) {
     return regionsArray.map((region) => <RegionItem key ={region.id} navigation={navigation} region={region} />);
   }

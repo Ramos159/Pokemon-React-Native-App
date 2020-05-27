@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 // import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import ProfileScreen from './profileScreen';
-import EditProfileScreen from './editProfileScreen';
-import AuthFormScreen from './authFormScreen';
+import { ProfileScreen } from './profileScreen';
+import { EditProfileScreen } from './editProfileScreen';
+import { AuthFormScreen } from './authFormScreen';
 import { ProfileStackParamList } from '../customTypes/profileStackParamList';
 // import RootTabParamList from '../customTypes/rootTabParamList';
 
@@ -16,7 +16,7 @@ const Stack = createStackNavigator<ProfileStackParamList>();
 //     navigation:BottomTabNavigationProp<RootTabParamList,"Profile">
 // }
 
-export default function ProfileStackNavigator(): ReactElement {
+export function ProfileStackNavigator(): ReactElement {
   return (
     <Stack.Navigator
       initialRouteName="AuthForm"
