@@ -82,15 +82,15 @@ export default function PokedexItem({ pokedex, navigation }: Props): ReactElemen
 
   // Stack navigator likes to pass params instead of props, they essentially work the same way
   function handleItemPress() {
-    navigation.dispatch(CommonActions.navigate({
-      name: 'RegionDetail',
-      params: {
-        name: pokedex.name,
-        games: pokedex.entries,
+    // navigation.dispatch(CommonActions.navigate({
+    //   name: 'RegionDetail',
+    //   params: {
+    //     name: pokedex.name,
+    //     games: pokedex.entries,
 
-      },
-    }));
-    // alert('normally would go to pokedex page')
+    //   },
+    // }));
+    alert('normally would go to pokedex page')
   }
 
   return (

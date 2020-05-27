@@ -9,6 +9,7 @@
     // this would give me problems when i used certain libraries, ill turn off for now
     // "noResolve": true,
     "jsx": "react-native",
-    "target": "ES6"
+    "target": "ES6",
+    "sourceMap": true
   }
 }

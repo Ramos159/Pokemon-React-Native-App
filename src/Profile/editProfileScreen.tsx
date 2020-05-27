@@ -28,7 +28,7 @@ type Props = {
 
 const styles = StyleSheet.create({
   container: {
-    lex: 1,
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',

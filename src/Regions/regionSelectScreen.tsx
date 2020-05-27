@@ -16,27 +16,27 @@ import { RootTabParamList } from '../customTypes/rootTabParamlist';
 
 // dummy data
 const regions = [
-  {
+  { id: 1,
     name: 'Kanto',
     games: ['Red', 'Blue', 'Yellow', 'Fire Red', 'Leaf Green'],
   },
-  {
+  { id: 2,
     name: 'Johto',
     games: ['Gold', 'Silver', 'Crystal', 'Heart Gold', 'Soul Silver'],
   },
-  {
+  { id: 3,
     name: 'Hoenn',
     games: ['Sapphire', 'Ruby', 'Emerald', 'Omega Ruby', 'Alpha Sapphire'],
   },
-  {
+  { id: 4,
     name: 'Sinnoh',
     games: ['Diamond,Pearl'],
   },
-  {
+  { id: 5,
     name: 'Unova',
     games: ['Black', 'White', 'Black 2', 'White 2'],
   },
-  {
+  { id: 6,
     name: 'Kalos',
     games: ['X', 'Y'],
   },
@@ -77,8 +77,8 @@ interface Props{
 }
 
 export default function RegionSelectScreen({ navigation }: Props): ReactElement {
-  function renderRegions(regionsArray: Array<RegionObject>) {
-    return regionsArray.map((region) => <RegionItem navigation={navigation} region={region} />);
+  function renderRegions(regionsArray) {
+    return regionsArray.map((region) => <RegionItem key ={region.id} navigation={navigation} region={region} />);
   }
   return (
     <SafeAreaView style={styles.container}>
