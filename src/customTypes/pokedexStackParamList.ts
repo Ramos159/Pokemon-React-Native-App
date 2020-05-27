@@ -1,8 +1,8 @@
-import PokedexObject from '../customInterfaces/pokedexObject'
+// eslint throws unused var but its clearly used
+// eslint-disable-next-line
+import PokedexObject from '../customInterfaces/pokedexObject';
 
-type PokedexStackParamList = {
-    PokedexSelect:undefined,
-    PokedexDetail: PokedexObject
+export type PokedexStackParamList = {
+  PokedexSelect:undefined,
+  PokedexDetail: PokedexObject,
 }
-
-export default PokedexStackParamList

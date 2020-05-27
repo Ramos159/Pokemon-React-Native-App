@@ -1,16 +1,14 @@
-import React,{Component} from 'react'
+import React, { ReactElement } from 'react';
 import {
-    StatusBar,
-    SafeAreaView,
-} from 'react-native'
+  StatusBar,
+  SafeAreaView,
+} from 'react-native';
 
-export default class StatusBarHeader extends Component{
-    render(){
-        return(
-            <>
-                <SafeAreaView style={{flex:0,backgroundColor:"white"}}/>
-			    <StatusBar barStyle="dark-content"/>
-            </>
-        )
-    }
+export default function StatusBarHeader(): ReactElement {
+  return (
+    <>
+      <SafeAreaView style={{ flex: 0, backgroundColor: 'white' }} />
+      <StatusBar barStyle="dark-content" />
+    </>
+  );
 }

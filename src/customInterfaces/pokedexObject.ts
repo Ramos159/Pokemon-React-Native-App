@@ -1,3 +1,5 @@
 export default interface PokedexObject{
-    entries: Array<Object>
+  // samething as Array<Object>
+  entries: Record<string, unknown>
+// eslint-disable-next-line semi
 }

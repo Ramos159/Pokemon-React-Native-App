@@ -1,10 +1,8 @@
-import React from 'react';
-// @ts-ignore
-// typescript says this import below doesnt exist but it does 🤷‍♂️
+import React, { ReactElement } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import AppTab from './appTab';
 
-export default function AppContainer() {
+export default function AppContainer(): ReactElement {
   return (
     <NavigationContainer>
       <AppTab />

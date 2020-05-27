@@ -1,22 +1,22 @@
 // NOTE: will come back to impliment this later
 
 // import React,{Component} from 'react'
-// import { 
+// import {
 //     SafeAreaView,
-//     Text, 
+//     Text,
 //     StyleSheet,
 //     StatusBar,
 //     View,
 //     ActivityIndicator,
 //     Modal,
 // } from 'react-native'
-// import { 
-//     Button, Input, Icon 
+// import {
+//     Button, Input, Icon
 // } from 'react-native-elements'
 
 // type Props = {
 //     visible:boolean,
-//     navigation: 
+//     navigation:
 //     // apparently this is how u descibe functions to props, kinda cool
 //     handleUsernameChange: (obj: object)=>void,
 //     handlePasswordChange: (obj: object)=>void,
@@ -41,7 +41,7 @@
 //         loading: false,
 //     }
 
-//     // form inputs dont have something like a name attribute in regular html so seperate form change functions will have to do for now
+//     form inputs dont have something like a name attribute in regular html so
 //     handleUsernameChange = (event): void => {
 
 //         const text = event.nativeEvent.text
@@ -227,7 +227,7 @@
 //         //             loading:false
 //         //         })
 //         //     },3000)
-//         // })  
+//         // })
 //     }
 
 //     verifyCorrectFormFields = ():Function | null=> {
@@ -270,14 +270,14 @@
 //     renderAuthForm = () => {
 //         return(
 //                 <View style={styles.formContainer}>
-//                     <Text style={styles.headerText}> 
+//                     <Text style={styles.headerText}>
 //                         {this.state.login? "Login" : "Register"}
 //                     </Text>
 //                     {this.loginOrRegister()}
-//                     <Button 
+//                     <Button
 //                         onPress={()=>{this.verifyCorrectFormFields()}}
-//                         style={styles.button} 
-//                         title={this.handleButtonTitle()} 
+//                         style={styles.button}
+//                         title={this.handleButtonTitle()}
 //                     />
 //                     <Text onPress={()=>{this.handleFormChange()}}>
 //                         {this.handleChangeFormText()}
@@ -296,7 +296,13 @@
 //             >
 //             <SafeAreaView style={styles.container}>
 //                 <StatusBar barStyle='dark-content'/>
-//                 {this.state.loading ? <ActivityIndicator style={styles.formContainer} size="large" color="black" /> : this.renderAuthForm()}
+//                 {this.state.loading ?
+//                   <ActivityIndicator
+//                     style={styles.formContainer}
+//                     size="large"
+//                     color="black"
+//                   />  :
+//                     this.renderAuthForm()}
 //             </SafeAreaView>
 //             </Modal>
 //         )
